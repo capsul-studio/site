@@ -464,7 +464,7 @@
         var overrideLoopMode = (options.hasOwnProperty('loop_mode') ? options.loop_mode : 'auto');
         var drawWhileLoading = (options.hasOwnProperty('draw_while_loading') ? options.draw_while_loading : true);
         var showProgressBar = drawWhileLoading ? (options.hasOwnProperty('show_progress_bar') ? options.show_progress_bar : true) : false;
-        var progressBarHeight = (options.hasOwnProperty('progressbar_height') ? options.progressbar_height : 25);
+        var progressBarHeight = (options.hasOwnProperty('progressbar_height') ? options.progressbar_height : 0);
         var progressBarBackgroundColor = (options.hasOwnProperty('progressbar_background_color') ? options.progressbar_background_color : 'rgba(255,255,255,0.4)');
         var progressBarForegroundColor = (options.hasOwnProperty('progressbar_foreground_color') ? options.progressbar_foreground_color : 'rgba(255,0,22,.8)');
 
@@ -495,6 +495,7 @@
         var setSizes = function(w, h) {
             canvas.width = w * get_canvas_scale();
             canvas.height = h * get_canvas_scale();
+            console.log(w,h,get_canvas_scale())
             toolbar.style.minWidth = ( w * get_canvas_scale() ) + 'px';
 
             tmpCanvas.width = w;
@@ -587,7 +588,9 @@
 
         var doHdr = function (_hdr) {
             hdr = _hdr;
+            // console.log(hdr.width,hdr.height)
             setSizes(hdr.width, hdr.height)
+            // setSizes(600,600)
         };
 
         var doGCE = function (gce) {
@@ -865,7 +868,7 @@
             div.width = canvas.width = gif.width;
             div.height = canvas.height = gif.height;
             toolbar.style.minWidth = gif.width + 'px';
-
+            console.log(div.width,div.height)
             div.className = 'jsgif';
             toolbar.className = 'jsgif_toolbar';
             div.appendChild(canvas);
@@ -886,7 +889,8 @@
             else {
                 scale = 1;
             }
-            return scale;
+            return 0.4
+            // return scale;
         }
 
         var canvas, ctx, toolbar, tmpCanvas;
