@@ -138,6 +138,8 @@ function createScrollOverlay(el, panelHeight, num, angle) {
       topPanelContent.style.overflow = 'hidden';
 
       bottomPanel.style.top = '100%';
+      bottomPanelContent.style.visibility = 'hidden';
+      bottomPanelContent.style.overflow = 'hidden';
       bottomPanel.style.transform = transYrotX(0, 0);
       // bottomPanel.classList.add('bottom-cutout')
       console.log(bottomPanel)
@@ -150,8 +152,8 @@ function createScrollOverlay(el, panelHeight, num, angle) {
       bottomPanel.classList.add('bottom-panel')
 
       // topPanel.classList.add('disappear')
-      bottomPanelContent.classList.add('disappear')
-      topPanelContent.classList.add('disappear')
+      // bottomPanelContent.classList.add('disappear')
+      // topPanelContent.classList.add('disappear')
       topPanel.classList.add('top-panel')
 
       topPanel.style.transform = transYrotX(-panelHeight - 0.25, -angle);
