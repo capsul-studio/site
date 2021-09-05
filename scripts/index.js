@@ -211,7 +211,7 @@ function createScrollOverlay(el, panelHeight, num, angle) {
   
   // setInterval(function() {el.scrollTop++}, 32)
 }
-var theta = 0.75;
+var theta = 1.1;
 var num = 2;
 // var theta = 1.3;
 

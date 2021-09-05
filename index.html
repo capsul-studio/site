@@ -97,37 +97,37 @@
   1 What furniture is available?
 </p>
 <p>
-   ︎︎︎Purpose built, modular furniture, modern plinths, consistantly changing as it’s all for sale.
+︎︎︎Purpose built, modular furniture, modern plinths, consistantly changing as it’s all for sale.
 </p>
 <p>
 2 When is the space available?
 </p>
 <p>
-    ︎︎︎Seven days a week 6am - 12am, Monday - Sunday. To check availability follow booking instructions through our Book Now* link.
+︎︎︎Seven days a week 6am - 12am, Monday - Sunday. To check availability follow booking instructions through our Book Now* link.
 </p>
 <p>
-  1 What furniture is available?
+1 What furniture is available?
 </p>
 <p>
-   ︎︎︎Purpose built, modular furniture, modern plinths, consistantly changing as it’s all for sale.
-</p>
-<p>
-2 When is the space available?
-</p>
-<p>
-    ︎︎︎Seven days a week 6am - 12am, Monday - Sunday. To check availability follow booking instructions through our Book Now* link.
-</p>
-<p>
-  1 What furniture is available?
-</p>
-<p>
-   ︎︎︎Purpose built, modular furniture, modern plinths, consistantly changing as it’s all for sale.
+︎︎︎Purpose built, modular furniture, modern plinths, consistantly changing as it’s all for sale.
 </p>
 <p>
 2 When is the space available?
 </p>
 <p>
-    ︎︎︎Seven days a week 6am - 12am, Monday - Sunday. To check availability follow booking instructions through our Book Now* link.
+︎︎︎Seven days a week 6am - 12am, Monday - Sunday. To check availability follow booking instructions through our Book Now* link.
+</p>
+<p>
+1 What furniture is available?
+</p>
+<p>
+︎︎︎Purpose built, modular furniture, modern plinths, consistantly changing as it’s all for sale.
+</p>
+<p>
+2 When is the space available?
+</p>
+<p>
+︎︎︎Seven days a week 6am - 12am, Monday - Sunday. To check availability follow booking instructions through our Book Now* link.
 </p>
 
     </div>
@@ -136,12 +136,12 @@
   <div class="buttons-right">
     <a class="button"> About </a>
     <a class="button"> Contact </a>
-    <a class="button"> Location </a>
+    <a class="button"> Gallery </a>
     <a class="button"> Gear </a>
 
  </div>
  <div class="buttons-left">
-  <a class="button"> Gallery </a>
+  <a class="button"> Location </a>
   <a class="button"> Amenities </a>
  </div>
 <div class="book-div">
@@ -155,11 +155,18 @@
  <div id="ontop " class=" top">This swings from the top</div>
 </div>
 <div class="studio-div">
-      <img id="studio" src="./example_gifs/rub_test.gif" rel:auto_play="0" width="100" height="100" rel:rubbable="1" />
+      <img id="studio-desktop" class="desktop" src="./example_gifs/rub_test.gif" rel:auto_play="0" width="100" height="100" rel:rubbable="1" />
+      <img id="studio-mobile" class="mobile" src="./example_gifs/capsulspaceanimationmobile.gif" rel:auto_play="0" width="100" height="100" rel:rubbable="1" />
       <br>
       <script type="text/javascript">
-        var sup2 = new RubbableGif({ gif: document.getElementById('studio') } );
-        sup2.load();
+        if ( window.innerWidth >= 600 ) {
+          var sup2 = new RubbableGif({ gif: document.getElementById('studio-desktop') } );
+          sup2.load();
+        } else{
+          var sup2 = new RubbableGif({ gif: document.getElementById('studio-mobile') } );
+          sup2.load();
+        } 
+        
       </script>
  </div>
     <script src="scripts/index.js"></script>
