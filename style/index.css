@@ -122,7 +122,7 @@ div {
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   overflow-y: scroll;
-  height: 150%;
+  height: 130%;
   margin:  0px;
   z-index: 3;
 /*  width: 500px;
