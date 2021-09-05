@@ -34,7 +34,7 @@ div {
   transform: translate(-50%, -50%);
   bottom: 20%;
   height: 10vh;
-  left:  -3%%;
+  left:  0;
 }
 
 #studio{
@@ -219,7 +219,7 @@ div {
   font-size: 12px;
   line-height: 1.2rem;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 25% 25% 25% 25%;
   position: fixed;
   z-index: 1000;
   width: 70vh;
@@ -236,10 +236,10 @@ div {
     font-size: 12px;
     line-height: 1.2rem;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 50% 50%;
     z-index: 999;
-    width: 70vh;
-    top: 80vh;
+    width: 50vh;
+    top: 60vh;
     transform-origin: 0 100%;
     transform: rotate(-90deg);
     text-align: center;
