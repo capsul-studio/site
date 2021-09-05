@@ -889,7 +889,7 @@
             else {
                 scale = 1;
             }
-            return 0.4
+            return 0.2
             // return scale;
         }
 

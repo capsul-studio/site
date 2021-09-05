@@ -46,9 +46,9 @@ div {
 /*  max-height: 500px;
 */  top: 43%;
   left: 50%;
-  -webkit-perspective: 300px;
-  perspective: 300px;
-  perspective-origin: 50% 30%;
+  -webkit-perspective: 400px;
+  perspective: 400px;
+/*  perspective-origin: 50% 30%;*/
   transform: translate(-50%, -50%) translateZ(-200px) rotateY(0deg);
 /*  border-left-style: solid;
   border-right-style: solid;*/
