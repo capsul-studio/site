@@ -32,7 +32,7 @@ div {
 .studio-div{
   position: absolute;
   transform: translate(-100%, -50%);
-  bottom: 20%;
+  bottom: 15%;
   height: 10%;
   left:  0;
 }

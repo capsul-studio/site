@@ -93,7 +93,7 @@ function syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight
 }
 
 function transYrotX(y,x) {
-  return `translate3d(0,${y}px,0) rotateX(${x}rad)`;
+  return `translate3d(0,${y}px,0) rotateX(${x}rad) rotateY(0)`;
 }
 
 
@@ -123,7 +123,7 @@ function createScrollOverlay(el, panelHeight, num, angle) {
     topPanel.style.transformOrigin = '50% 100% 0';
 
     // topPanel.style.transformOrigin = '50% 0% 0';
-    bottomPanel.style.transformOrigin = '-50% 0% 0';
+    bottomPanel.style.transformOrigin = '50% 0% 0';
     
     var topPanelContent = topPanel.querySelector('.panel-content');
     var bottomPanelContent = bottomPanel.querySelector('.panel-content');
