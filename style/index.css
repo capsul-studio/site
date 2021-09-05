@@ -25,28 +25,27 @@ div {
 }
 #supercontainer{
   width: 100%;
-  height: 90vh;
-  top: 10%;
+  height: 95vh;
+  top: 5%;
   border: 2px solid;
 }
 .studio-div{
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 60%;
+  bottom: 20%;
   height: 10vh;
-  left:  5vw;
+  left:  -3%%;
 }
 
 #studio{
 }
 #container {
 /*  font-family: UnifrakturMaguntia;
-*/  width: 60%;
+*/  width: 80%;
   height: 65%;
 /*  max-height: 500px;
-*/  top: 40%;
+*/  top: 43%;
   left: 50%;
-  width:  70%;
   -webkit-perspective: 300px;
   perspective: 300px;
   perspective-origin: 50% 30%;
@@ -134,6 +133,7 @@ div {
 */   border-right: 2px solid black;
   border-left: 2px solid black;
   margin:  0px;
+  z-index: 5;
 /*  border-right: 2px solid black;
   border-left: 2px solid black;*/
 /*  box-shadow: inset -2px 0 0 black, inset 0 -2px 0 black, inset 2px 0 0 black, inset 0 2px 0 black;
@@ -200,36 +200,56 @@ div {
 }
 
 .button {
-  display: block;
-  margin-bottom: 5px;
+/*  display: block;
+*/  margin-bottom: 5px;
 /*  flex: 1;
-*/  border-radius: 500px;
+*/
   font-size: 1.8em;
   font-family: "Arial Narrow", Arial, sans-serif;
   padding-top: 0px;
   padding-bottom: 0px;
-  background-color: white;
   border-color: black;
   padding-right: 15px;
   padding-left: 15px;
-/*  -webkit-box-shadow: 15px 16px 15px 9px rgba(0,0,0,0.45); 
-*/  box-shadow: 15px 16px 10px 0px rgba(0,0,0,0.25);
-
 }
 
-.buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  left: 8vw;
-  height: 35vh;
-  top: 20vh;
+.buttons-right {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  line-height: 1.2rem;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  position: fixed;
+  z-index: 1000;
+  width: 70vh;
+  top: 80vh;
+  transform-origin: 100% 100%;
+  transform: rotate(90deg);
+  box-sizing: border-box;
+  text-align: center;
+  right: 9%;
+}
+.buttons-left{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-size: 12px;
+    line-height: 1.2rem;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    z-index: 999;
+    width: 70vh;
+    top: 80vh;
+    transform-origin: 0 100%;
+    transform: rotate(-90deg);
+    text-align: center;
+    position: fixed;
+    left: 9%;
 }
 .book-div{
   background-color: white;
   width: 100vw;
-  height: 10vh;
+  height: 5vh;
   z-index: 100;
 
 }
@@ -237,12 +257,12 @@ div {
 .book {
   left: 50%;
   font-family: "Arial Narrow", Arial, sans-serif;
-  font-size: 1.8em;
+  font-size: 1.4em;
   top:  50%;
   transform: translate(-50%,-50%);
   border-radius: 500px;
-  margin: 5px;
-  z-index: 101;
+/*  margin: 5px;
+*/  z-index: 101;
 
 }
 #ontop {
@@ -312,6 +332,37 @@ div {
     transform: perspective(200px) rotateY(0deg);
   }
 }
+.text {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+#icon-grid{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 50px;
+}
+.single-icon{
+  display: grid;
+  height: 50px;
+  grid-template-columns: 50% 50%;
+}
+.single-icon img{
+  transform: translate(-50%, -50%)
+  left: 50%;
+  top: 50%;
+}
+.subtext{
+  height: 50px;
+  display: grid;
+  grid-template-rows: 50% 50%;
+transform: translate(-50%, -50%)
+  left: 50%;
+  top: 50%;
+      font-size: ;
+
+  }
+  .subtext{
+  }
 
 
 .book::after {

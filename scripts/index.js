@@ -89,9 +89,6 @@ function syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight
     var bTop = -i * panelHeight - scrollTop - containerHeight;
     t.style.transform = `translate3d(0,${tTop}px,0)`;
     b.style.transform = `translate3d(0,${bTop}px,0)`;
-    console.log(t)
-    console.log(b)
-    console.log(tTop)
   }
 }
 
@@ -142,10 +139,8 @@ function createScrollOverlay(el, panelHeight, num, angle) {
       bottomPanelContent.style.overflow = 'hidden';
       bottomPanel.style.transform = transYrotX(0, 0);
       // bottomPanel.classList.add('bottom-cutout')
-      console.log(bottomPanel)
     }
     else {
-      console.log(angle)
       // topPanel.style.width = '115%';
       bottomPanel.classList.add('gradient');
       // bottomPanelContent.classList.add('gradient')
@@ -154,7 +149,13 @@ function createScrollOverlay(el, panelHeight, num, angle) {
       // topPanel.classList.add('disappear')
       // bottomPanelContent.classList.add('disappear')
       // topPanelContent.classList.add('disappear')
+      topPanelContent.style.opacity = "0.5"
+      bottomPanelContent.style.opacity="0.5"
+      topPanelContent.style.zIndex = "5"
+
       topPanel.classList.add('top-panel')
+      topPanel.classList.add('gradient');
+
 
       topPanel.style.transform = transYrotX(-panelHeight - 0.25, -angle);
       bottomPanel.style.transform = transYrotX(panelHeight - 0.25, angle);
@@ -210,4 +211,4 @@ var num = 2;
 
 
 var $ = document.querySelector.bind(document);
-createScrollOverlay($('#content'), 120, num, theta);
+createScrollOverlay($('#content'), 100, num, theta);
