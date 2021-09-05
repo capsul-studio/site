@@ -151,6 +151,9 @@ function createScrollOverlay(el, panelHeight, num, angle) {
       // topPanelContent.classList.add('disappear')
       topPanelContent.style.opacity = "0.5"
       bottomPanelContent.style.opacity="0.5"
+      topPanelContent.style.border = "none"
+
+      bottomPanelContent.style.border = "none"
       topPanelContent.style.zIndex = "5"
 
       topPanel.classList.add('top-panel')
