@@ -159,6 +159,8 @@ function createScrollOverlay(el, panelHeight, num, angle) {
 
       topPanel.style.transform = transYrotX(-panelHeight - 0.25, -angle);
       bottomPanel.style.transform = transYrotX(panelHeight - 0.25, angle);
+     // bottomPanel.style.transform = transYrotX(panelHeight - 0.25, angle);
+
       // topPanel.style.transform = transYrotX(panelHeight - 0.25, angle);
       // bottomPanel.style.transform = transYrotX(panelHeight - 0.25, angle);
       // topPanel.style.transform = transYrotX(-panelHeight + 0.25, angle);
@@ -173,10 +175,10 @@ function createScrollOverlay(el, panelHeight, num, angle) {
 
       totalTheta += angle;
       totalTheta %= 2 * Math.PI;
-      if (Math.PI * (1 / 2) < totalTheta && totalTheta < Math.PI * (3 / 2)) {
-        topPanelContent.classList.add('backface');
-        bottomPanelContent.classList.add('backface');
-      }
+      // if (Math.PI * (1 / 2) < totalTheta && totalTheta < Math.PI * (3 / 2)) {
+      //   topPanelContent.classList.add('backface');
+      //   bottomPanelContent.classList.add('backface');
+      // }
     }
 
     angle += 0.025;

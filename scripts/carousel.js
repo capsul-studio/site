@@ -48,9 +48,9 @@ window.addEventListener('resize', setScreenSize);
 
 function setScreenSize() {
   if ( window.innerWidth >= 500 ) {
-    carouselDisplaying = 3;
+    carouselDisplaying = 1;
   } else if ( window.innerWidth >= 300 ) {
-    carouselDisplaying = 2;
+    carouselDisplaying = 1;
   } else {
     carouselDisplaying = 1;
   }
