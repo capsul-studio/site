@@ -3,7 +3,7 @@ body {
 */    
 /*border:  2px solid;
 */    margin: 0px;
-    font-family: "Arial Narrow", Arial, sans-serif;
+    font-family: "Arial", Arial, sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -65,20 +65,6 @@ img.mobile { display: none }
   perspective: 400px;
 /*  perspective-origin: 50% 30%;*/
   transform: translate(-50%, -50%) translateZ(-200px) rotateY(0deg);
-/*  border-left-style: solid;
-  border-right-style: solid;*/
-
-/*  -webkit-perspective: 400px;
-  perspective: 400px;*/
-/*  left: 30%;
-  transform: translate(-50%, -50%) rotateY(20deg);
-  -webkit-perspective: 400px;
-  perspective: 400px;
-  perspective-origin: -100%;
-*/
-/*  border-left-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;*/
 
 }
 
@@ -139,11 +125,12 @@ img.mobile { display: none }
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 130%;
   margin:  0px;
   z-index: 3;
-  padding: 10px;
-/*  width: 500px;
+/*  padding: 10px;
+*//*  width: 500px;
 */}
 
 #content, .panel-content {
@@ -272,10 +259,13 @@ img.mobile { display: none }
   transform: translate(-50%,-50%);
   border-radius: 500px;
   color: white;
-/*  margin: 5px;
-*/  z-index: 101;
-
+    margin: 0;
+  padding: 0;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: absolute;
 }
+
 #ontop {
 }
 
@@ -360,12 +350,12 @@ img.mobile { display: none }
 */  
   left: 50%;
   top: 50%;
-  padding: 10px;
-  margin-left: 10%;
+/*  padding: 10px;
+*/  margin-left: 10%;
 }
 .main-text{
-  padding: 10px;
-  margin-top: 10px;
+/*  padding: 10px;
+*/  margin-top: 10px;
 }
 .single-icon{
   display: grid;
@@ -397,7 +387,7 @@ img.mobile { display: none }
   margin-bottom: 0em;
 }
 
-.book::after {
+/*.book::after {
   content: "";
   border-radius: 5px;
   position: absolute;
@@ -410,16 +400,16 @@ img.mobile { display: none }
   opacity: 0;
   -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
+}*/
 .icon-title{
   margin-bottom: 0px;
 }
 
 
-.book:hover {
+/*.book:hover {
   cursor: pointer;
-}
-
+}*/
+/*
 .book:hover::after {
     opacity: 1;
-}
+}*/

@@ -30,6 +30,8 @@
 // function hello() {
 // alert('Hello');
 // }
+
+
 var slideDown = false
 function ani() {
   console.log("inani")
@@ -81,7 +83,7 @@ function panel(html) {
 
 // Keep the content panels in sync by translating them up or down according to the scroll distance
 function syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight) {
-  console.log("update")
+  console.log('syncing')
   for (var i = 0; i < tops.length; i++) {
     var t = tops[i];
     var b = bottoms[i];
@@ -204,6 +206,10 @@ function createScrollOverlay(el, panelHeight, num, angle) {
     requestAnimationFrame(function() {
       syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight);
     });
+    console.log(document.getElementById("about-button"))
+
+  document.getElementById("about-button").addEventListener("about-button-click", syncPanelContent(tops, bottoms, 0, container.clientHeight, panelHeight));
+
   }
 
   el.onscroll = update;
@@ -218,3 +224,5 @@ var num = 2;
 
 var $ = document.querySelector.bind(document);
 createScrollOverlay($('#content'), 100, num, theta);
+
+

@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script type="text/javascript" src="./libgif.js"></script>
   <script type="text/javascript" src="./rubbable.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -16,9 +16,9 @@
   <div id ="all">
 
  <div id="supercontainer">
- <div id="container">
+ <div id="container" class="js-loop">
     <div id="content">
-      <p>
+      <p id="about">
           CAPSUL
         </p>
         <hr>
@@ -27,7 +27,42 @@
           CAPSUL is a 1000 square foot multifunction space ideal for creative work, meetings, screenings and small events. It is strategically furnished with modular pieces and art so you’re free to create your ideal environment with minimal effort or expense. 
         </p>
       </section>
-      <p>
+            <p id="gallery">
+      Gallery
+      </p>
+      <hr>
+      <section>
+
+<div class="carousel">
+      <div class="nav nav-left">
+        <div class="ion-chevron-left carousel-arrow-icon-left"></div>
+      </div>
+
+        <div class="carousel-content">
+          
+          <div class="slide slide-1">
+            <div>cat</div>
+          </div>
+          <div class="slide slide-2">
+            <div>dog</div>
+          </div>
+          <div class="slide slide-3">
+            <div>mouse</div>
+          </div>
+          <div class="slide slide-4">
+            <div>hen</div>
+          </div>
+          <div class="slide slide-5">
+            <div>bug</div>
+          </div>
+        </div>
+
+      <div class="nav nav-right">
+        <div class="ion-chevron-right carousel-arrow-icon-right"></div>
+      </div>
+    </div>
+    
+      <p id="amenities">
         Amenities
       </p>
       <hr>
@@ -134,43 +169,8 @@
           </section>
         </section>
       </section> -->
-      <p>
-      Gallery
-      </p>
-      <hr>
-      <section id="gallery">
-
-<div class="carousel">
-      <div class="nav nav-left">
-        <div class="ion-chevron-left carousel-arrow-icon-left"></div>
-      </div>
-
-        <div class="carousel-content">
-          
-          <div class="slide slide-1">
-            <div>cat</div>
-          </div>
-          <div class="slide slide-2">
-            <div>dog</div>
-          </div>
-          <div class="slide slide-3">
-            <div>mouse</div>
-          </div>
-          <div class="slide slide-4">
-            <div>hen</div>
-          </div>
-          <div class="slide slide-5">
-            <div>bug</div>
-          </div>
-        </div>
-
-      <div class="nav nav-right">
-        <div class="ion-chevron-right carousel-arrow-icon-right"></div>
-      </div>
-    </div>
-    
 </section>
-      <p>Location</p>
+      <p id="location">Location</p>
 <hr>
 <section class="offset">
 <p class="mt-3 mb-0">25 Liberty Street</p>
@@ -180,11 +180,11 @@
 </section>
 
       <section class="text-section" >
-      <p>
+      <p id="faq">
         FAQ
       </p>
       <hr>
-      <section class="offset mt-3">
+      <section class="offset mt-3 mb-5">
           <p class="mb-0"><b>What furniture is available?</b></p>
           <p>Purpose built, modular furniture, modern plinths, consistantly changing as it’s all for sale.</p>
           <p class="mb-0"><b>When is the space available?</b></p>
@@ -207,7 +207,7 @@
   </div>
   </div>
   <div class="buttons-right">
-    <a class="button"> About </a>
+    <a class="button" id="about-button"> About </a>
     <a class="button"> Contact </a>
     <a class="button"> Gallery </a>
     <a class="button"> Gear </a>
@@ -218,18 +218,19 @@
   <a class="button"> Amenities </a>
  </div>
 <div class="book-div">
- <div class="book">
-    <a name="BOOK NOW" type="button" onclick="ani()">
+ <section class="book">
+    <a name="BOOK NOW" onclick="ani()">
       BOOK NOW
     </a>
- </div>
+ </section>
 </div>
  <div class="top-div">
  <div id="ontop " class=" top">This swings from the top</div>
 </div>
-<div class="studio-div">
+<!-- capsulspaceanimationmobile
+ --><div class="studio-div">
       <img id="studio-desktop" class="desktop" src="./example_gifs/rub_test.gif" rel:auto_play="0" width="100" height="100" rel:rubbable="1" />
-      <img id="studio-mobile" class="mobile" src="./example_gifs/capsulspaceanimationmobile.gif" rel:auto_play="0" width="100" height="100" rel:rubbable="1" />
+      <img id="studio-mobile" class="mobile" src="./example_gifs/rub_test.gif" rel:auto_play="0" width="100" height="100" rel:rubbable="1" />
       <br>
       <script type="text/javascript">
         if ( window.innerWidth >= 600 ) {
