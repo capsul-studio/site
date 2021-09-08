@@ -220,21 +220,37 @@ var num = 2;
 
 var $ = document.querySelector.bind(document);
 createScrollOverlay($('#content'), 100, num, theta);
-  function message () {
-    console.log($('#content'))
-    $('#content').scrollTop = 100
+  function message(input) {
+    $('#content').scrollTop = $("#content").offsetTop
+  }
+  function message1(input) {
+
+    $('#content').scrollTop = $("#gallery").offsetTop
+  }
+  function message2(input) {
+
+    $('#content').scrollTop = $("#amenities").offsetTop
+  }
+  function message3(input) {
+    $('#content').scrollTop = $("#location").offsetTop
+  }
+  function message4(input) {
+    $('#content').scrollTop = $("#contact").offsetTop
   }
  function init(){
     console.log("init")
     // syncPanelContent(tops, bottoms, 0, container.clientHeight, 100)
   
-    document.getElementById("about-button").addEventListener("click",message, true);
+    document.getElementById("about-button").addEventListener("click", message, true);
+    document.getElementById("gallery-button").addEventListener("click", message1, true);
+    document.getElementById("amenities-button").addEventListener("click", message2, true);
+    document.getElementById("location-button").addEventListener("click", message3, true);
+    document.getElementById("contact-button").addEventListener("click", message4, true);
+
   };
 document.addEventListener('DOMContentLoaded', init, false);
 console.log($('#about-button'))
 console.log($('#about-button').scrollTop)
-var scrollTop = $(window).scrollTop()
-var divOffset = $('#gallery').offset().top
-var dist = (divOffset - scrollTop);
-console.log(divOffset,dist)
+var divOffset = $('#gallery').offsetTop
+console.log(divOffset)
 
