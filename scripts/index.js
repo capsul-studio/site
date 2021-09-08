@@ -83,7 +83,6 @@ function panel(html) {
 
 // Keep the content panels in sync by translating them up or down according to the scroll distance
 function syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight) {
-  console.log('syncing')
   for (var i = 0; i < tops.length; i++) {
     var t = tops[i];
     var b = bottoms[i];
@@ -201,11 +200,8 @@ function createScrollOverlay(el, panelHeight, num, angle) {
     var scrollTop = el.scrollTop;
     var containerHeight = container.clientHeight;
     requestAnimationFrame(function() {
-       console.log(tops, bottoms, 0, container.clientHeight, 100)
-
       syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight);
     });
-    console.log(document.getElementById("about-button"))
 
   }
  
@@ -224,7 +220,6 @@ createScrollOverlay($('#content'), 100, num, theta);
     $('#content').scrollTop = $("#content").offsetTop
   }
   function message1(input) {
-
     $('#content').scrollTop = $("#gallery").offsetTop
   }
   function message2(input) {
@@ -234,23 +229,13 @@ createScrollOverlay($('#content'), 100, num, theta);
   function message3(input) {
     $('#content').scrollTop = $("#location").offsetTop
   }
-  function message4(input) {
-    $('#content').scrollTop = $("#contact").offsetTop
-  }
  function init(){
-    console.log("init")
-    // syncPanelContent(tops, bottoms, 0, container.clientHeight, 100)
   
     document.getElementById("about-button").addEventListener("click", message, true);
     document.getElementById("gallery-button").addEventListener("click", message1, true);
     document.getElementById("amenities-button").addEventListener("click", message2, true);
     document.getElementById("location-button").addEventListener("click", message3, true);
-    document.getElementById("contact-button").addEventListener("click", message4, true);
 
   };
 document.addEventListener('DOMContentLoaded', init, false);
-console.log($('#about-button'))
-console.log($('#about-button').scrollTop)
-var divOffset = $('#gallery').offsetTop
-console.log(divOffset)
 
