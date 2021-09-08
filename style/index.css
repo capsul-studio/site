@@ -214,7 +214,7 @@ img.mobile { display: none }
 .buttons-right {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.2rem;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
@@ -231,7 +231,7 @@ img.mobile { display: none }
 .buttons-left{
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.2rem;
   display: grid;
   grid-template-columns: 50% 50%;

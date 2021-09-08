@@ -207,8 +207,11 @@ function createScrollOverlay(el, panelHeight, num, angle) {
       syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight);
     });
     console.log(document.getElementById("about-button"))
+document.addEventListener('DOMContentLoaded', init, false);
+function init(){
+    document.getElementById("about-button").addEventListener("about-button-click", syncPanelContent(tops, bottoms, 0, container.clientHeight, panelHeight));
 
-  document.getElementById("about-button").addEventListener("about-button-click", syncPanelContent(tops, bottoms, 0, container.clientHeight, panelHeight));
+};
 
   }
 
