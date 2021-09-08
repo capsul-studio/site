@@ -97,16 +97,13 @@ function syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight
 function transYrotX(y,x) {
   return `translate3d(0,${y}px,0) rotateX(${x}rad) rotateY(0)`;
 }
-
+var tops = [];
+var bottoms = [];
 
 // Create num top and bottom panels based off the innerHTML of el with articulation angle.
 // We nest panels and use `transform-style: preserve-3d` to get the tentacle curl effect.
 // Should probably only use this on relatively simple el's, because we are going to need to create 2 * num deep copies of el and attach them to the DOM. Needless to say, this will scale poorly.
 function createScrollOverlay(el, panelHeight, num, angle) {
-
-
-  var tops = [];
-  var bottoms = [];
 
   var topParent = el.parentNode;
   var bottomParent = el.parentNode;
@@ -204,20 +201,16 @@ function createScrollOverlay(el, panelHeight, num, angle) {
     var scrollTop = el.scrollTop;
     var containerHeight = container.clientHeight;
     requestAnimationFrame(function() {
+       console.log(tops, bottoms, 0, container.clientHeight, 100)
+
       syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight);
     });
     console.log(document.getElementById("about-button"))
-document.addEventListener('DOMContentLoaded', init, false);
-function init(){
-    document.getElementById("about-button").addEventListener("about-button-click", syncPanelContent(tops, bottoms, 0, container.clientHeight, panelHeight));
-
-};
 
   }
-
+ 
   el.onscroll = update;
   window.onresize = update;
-  
   // setInterval(function() {el.scrollTop++}, 32)
 }
 var theta = 1.1;
@@ -227,5 +220,21 @@ var num = 2;
 
 var $ = document.querySelector.bind(document);
 createScrollOverlay($('#content'), 100, num, theta);
-
+  function message () {
+    console.log($('#content'))
+    $('#content').scrollTop = 100
+  }
+ function init(){
+    console.log("init")
+    // syncPanelContent(tops, bottoms, 0, container.clientHeight, 100)
+  
+    document.getElementById("about-button").addEventListener("click",message, true);
+  };
+document.addEventListener('DOMContentLoaded', init, false);
+console.log($('#about-button'))
+console.log($('#about-button').scrollTop)
+var scrollTop = $(window).scrollTop()
+var divOffset = $('#gallery').offset().top
+var dist = (divOffset - scrollTop);
+console.log(divOffset,dist)
 
