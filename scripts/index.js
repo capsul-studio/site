@@ -229,13 +229,16 @@ createScrollOverlay($('#content'), 100, num, theta);
   function message3(input) {
     $('#content').scrollTop = $("#location").offsetTop
   }
+  function message4(input) {
+    $('#content').scrollTop = $("#contact").offsetTop
+  }
  function init(){
   
     document.getElementById("about-button").addEventListener("click", message, true);
     document.getElementById("gallery-button").addEventListener("click", message1, true);
     document.getElementById("amenities-button").addEventListener("click", message2, true);
     document.getElementById("location-button").addEventListener("click", message3, true);
-
+    document.getElementById("contact-button").addEventListener("click", message4, true);
   };
 document.addEventListener('DOMContentLoaded', init, false);
 
