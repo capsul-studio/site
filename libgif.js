@@ -869,7 +869,7 @@
             div.height = canvas.height = gif.height;
             toolbar.style.minWidth = gif.width + 'px';
             console.log(div.width,div.height)
-            div.className = 'jsgif';
+            div.className = 'jsgif ';
             toolbar.className = 'jsgif_toolbar';
             div.appendChild(canvas);
             div.appendChild(toolbar);
