@@ -38,8 +38,13 @@ div {
 .about {
   padding: 0px;
   height: 60vh;
-  width: 90%;
+  width: 100%;
   margin: 1px;
+
+}
+.margins{
+    margin-left: 5%;
+  margin-right: 5%;
 }
 
 .logo{
@@ -70,6 +75,9 @@ div {
 }
 .text-section{
 }
+.logo-image{
+  width: 400px;
+}
 
 .offset{
   margin-left: 10%;
@@ -80,14 +88,21 @@ img.mobile { display: none }
     img.mobile { display: block }
     img.desktop { display: none }
 }
-
+.studio-gif {
+      margin-left: 25px;
+    }
 @media only screen and (max-width: 640px ) {
     .about {
       padding: 0px;
-      padding-right: 10px;
-      width: 90%;
+      width: 100%;
       height: 80vh;
       float:  right;
+    }
+    .logo-image{
+      width: 200px;
+    }
+    .studio-gif {
+      margin-left: 0px;
     }
 }
 
