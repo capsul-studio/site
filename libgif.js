@@ -857,7 +857,6 @@
 
         var init = function () {
             var parent = gif.parentNode;
-
             var div = document.createElement('div');
             canvas = document.createElement('canvas');
             ctx = canvas.getContext('2d');
@@ -889,6 +888,10 @@
             else {
                 scale = 1;
             }
+            if(options.gif.id == "studio-mobile"){
+                return 0.6
+            }
+            // console.log("options",options.gif.id)
             return 0.4
             // return scale;
         }
