@@ -6,6 +6,56 @@ body {
     font-family: "Arial", Arial, sans-serif;
 }
 
+
+#loading {
+    background: url('../load.gif') no-repeat center center;
+    background-size: 350px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999;
+    -webkit-animation: hide-loading 4s;
+    animation: hide-loading 4s;
+    animation-fill-mode: forwards;
+
+
+}
+
+@-webkit-keyframes hide-loading {
+    0% { opacity: 1;}
+      50% { opacity: 1;}
+    99% { opacity: 0.01;width: 100%; height: 100%;}
+    100% { opacity: 0;width: 0; height: 0;}
+}  
+@keyframes hide-loading {
+    0% { opacity: 1;}
+    50% { opacity: 1;}
+    99% { opacity: 0.01;width: 100%; height: 100%;}
+    100% { opacity: 0;width: 0; height: 0;}
+}
+/*@-webkit-keyframes hide-loading {
+}*/
+
+/*@keyframes hide-loading {
+  from {
+    opacity:  1;
+    width: 100%; 
+    height: 100%;
+  }
+  to {
+    opacity: 0;
+    width: 0; 
+    height: 0;
+    z-index: -1000;
+  }
+}*/
+/*.hide-loading {
+        display: none;
+    }
+*/
 ::-webkit-scrollbar {
   display: none;
 }

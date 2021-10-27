@@ -30,6 +30,25 @@
 // function hello() {
 // alert('Hello');
 // }
+// function hideLoader() {
+//    console.log($('#loading'));
+//        console.log("should hide");;
+
+//     // $('#loading').hide();
+// }
+
+// $(window).load(function() {
+//   console.log($('#loading'));
+//   $('#loading').classList.add("hide-loading");
+//     console.log($('#loading'));
+
+//      // $('#loading').addClass('hide');
+//     });
+// $(window).ready(hideLoader);
+
+// Strongly recommended: Hide loader after 20 seconds, even if the page hasn't finished loading
+// setTimeout(hideLoader, 20 * 1000);
+
 
 
 var slideDown = false
