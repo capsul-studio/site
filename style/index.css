@@ -12,11 +12,12 @@ body {
     background-size: 350px;
     background-color: white;
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 9999999;
+    top: 14%;
+    left: 11%;
+    right: 11%;
+    height: 77%;
+    width: 78%;
+    z-index: 1;
     -webkit-animation: hide-loading 4s;
     animation: hide-loading 4s;
     animation-fill-mode: forwards;
@@ -27,13 +28,13 @@ body {
 @-webkit-keyframes hide-loading {
     0% { opacity: 1;}
       50% { opacity: 1;}
-    99% { opacity: 0.01;width: 100%; height: 100%;}
+    99% { opacity: 0.01;width: 78%; height: 77%;}
     100% { opacity: 0;width: 0; height: 0;}
 }  
 @keyframes hide-loading {
     0% { opacity: 1;}
     50% { opacity: 1;}
-    99% { opacity: 0.01;width: 100%; height: 100%;}
+    99% { opacity: 0.01;width: 78%; height: 77%;}
     100% { opacity: 0;width: 0; height: 0;}
 }
 /*@-webkit-keyframes hide-loading {
@@ -500,6 +501,12 @@ img.mobile { display: none }
 .clear{
   color: black;
 
+}
+#studio-mobile{
+  z-index: 100;
+}
+#studio-desktop{
+  z-index: 100;
 }
 
 .clear:hover{

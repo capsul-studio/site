@@ -858,7 +858,10 @@
         var init = function () {
             var parent = gif.parentNode;
             var div = document.createElement('div');
+            div.style.zIndex= "100";
             canvas = document.createElement('canvas');
+            canvas.style.zIndex= "100";
+
             ctx = canvas.getContext('2d');
             toolbar = document.createElement('div');
 
