@@ -111,6 +111,9 @@ div {
 .logo-image{
   width: 400px;
 }
+.large-margin{
+  margin-top: 50px;
+}
 
 .offset{
   margin-left: 11%;
