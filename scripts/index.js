@@ -242,7 +242,6 @@ createScrollOverlay($('#content'), 100, num, theta);
     $('#content').scrollTop = $("#gallery").offsetTop
   }
   function message2(input) {
-
     $('#content').scrollTop = $("#amenities").offsetTop
   }
   function message3(input) {
@@ -251,6 +250,9 @@ createScrollOverlay($('#content'), 100, num, theta);
   function message4(input) {
     $('#content').scrollTop = $("#contact").offsetTop
   }
+  function message5(input) {
+    $('#content').scrollTop = $("#gear").offsetTop
+  }
  function init(){
   
     document.getElementById("about-button").addEventListener("click", message, true);
@@ -258,6 +260,8 @@ createScrollOverlay($('#content'), 100, num, theta);
     document.getElementById("amenities-button").addEventListener("click", message2, true);
     document.getElementById("location-button").addEventListener("click", message3, true);
     document.getElementById("contact-button").addEventListener("click", message4, true);
+    document.getElementById("gear-button").addEventListener("click", message5, true);
+
   };
 document.addEventListener('DOMContentLoaded', init, false);
 

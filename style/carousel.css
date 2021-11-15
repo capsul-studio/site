@@ -23,8 +23,8 @@
 
 .slide {
   height: 100%;
-  background-color: black;
-  position: absolute;
+/*  background-color: black;
+*/  position: absolute;
   z-index: 1;
   transition: left .4s cubic-bezier(.47,.13,.15,.89);
 }
