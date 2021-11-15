@@ -6,7 +6,6 @@ var carouselDisplaying;
 var screenSize;
 setScreenSize();
 var lengthOfSlide;
-console.log("he")
 function addClone() {
    var lastSlide = carouselContent.lastElementChild.cloneNode(true);
    lastSlide.style.left = (-lengthOfSlide) + "px";
