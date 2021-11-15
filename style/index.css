@@ -116,11 +116,12 @@ div {
   margin-left: 11%;
 }
 
-img.mobile { display: none }
+.mobile { display: none }
 @media (max-width: 640px) {
-    img.mobile { display: block }
-    img.desktop { display: none }
+    .mobile { display: block }
+    .desktop { display: none }
 }
+
 .links{
   display: inline;
 }
