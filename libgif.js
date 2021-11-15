@@ -892,7 +892,7 @@
                 scale = 1;
             }
             if(options.gif.id == "studio-mobile"){
-                return 0.6
+                return 0.5
             }
             // console.log("options",options.gif.id)
             return 0.3
