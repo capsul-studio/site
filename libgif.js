@@ -895,7 +895,8 @@
                 return 0.5
             }
             // console.log("options",options.gif.id)
-            return 0.3
+            return (0.5)
+
             // return scale;
         }
 
