@@ -98,9 +98,20 @@ div {
   position: absolute;
   transform: translate(-100%, -0%);
   margin-bottom: 5%;
+  bottom: 5%;
+  height: 10%;
+  left:  2%;
+}
+
+@media only screen and (max-width: 640px ) {
+    .studio-div{
+  position: absolute;
+  transform: translate(-100%, -0%);
+  margin-bottom: 5%;
   bottom: 10%;
   height: 10%;
   left:  2%;
+}
 }
 .mid-img{
   transform: translate(-50%, -0%);
