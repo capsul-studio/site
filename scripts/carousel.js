@@ -211,15 +211,6 @@ function moveTouch(e) {
       console.log("swiped right");
       moveRight();
     }  
-  } else {
-    // sliding vertically
-    if (diffY > 0) {
-      // swiped up
-      console.log("swiped up");
-    } else {
-      // swiped down
-      console.log("swiped down");
-    }  
   }
  
   initialX = null;
