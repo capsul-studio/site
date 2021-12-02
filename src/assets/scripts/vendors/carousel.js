@@ -6,10 +6,11 @@ var carouselDisplaying;
 var screenSize;
 setScreenSize();
 var lengthOfSlide;
+
 function addClone() {
-   var lastSlide = carouselContent.lastElementChild.cloneNode(true);
-   lastSlide.style.left = (-lengthOfSlide) + "px";
-   carouselContent.insertBefore(lastSlide, carouselContent.firstChild);
+  var lastSlide = carouselContent.lastElementChild.cloneNode(true);
+  lastSlide.style.left = (-lengthOfSlide) + "px";
+  carouselContent.insertBefore(lastSlide, carouselContent.firstChild);
 }
 // addClone();
 
@@ -23,7 +24,7 @@ function moveSlidesRight() {
   var slidesArray = Array.prototype.slice.call(slides);
   var width = 0;
 
-  slidesArray.forEach(function(el, i){
+  slidesArray.forEach(function (el, i) {
     el.style.left = width + "px";
     width += lengthOfSlide;
   });
@@ -37,7 +38,7 @@ function moveSlidesLeft() {
   slidesArray = slidesArray.reverse();
   var maxWidth = (slidesArray.length - 1) * lengthOfSlide;
 
-  slidesArray.forEach(function(el, i){
+  slidesArray.forEach(function (el, i) {
     maxWidth -= lengthOfSlide;
     el.style.left = maxWidth + "px";
   });
@@ -46,9 +47,9 @@ function moveSlidesLeft() {
 window.addEventListener('resize', setScreenSize);
 
 function setScreenSize() {
-  if ( window.innerWidth >= 500 ) {
+  if (window.innerWidth >= 500) {
     carouselDisplaying = 1;
-  } else if ( window.innerWidth >= 300 ) {
+  } else if (window.innerWidth >= 300) {
     carouselDisplaying = 1;
   } else {
     carouselDisplaying = 1;
@@ -59,9 +60,9 @@ function setScreenSize() {
 function getScreenSize() {
   var slides = document.querySelectorAll('.slide');
   var slidesArray = Array.prototype.slice.call(slides);
-  lengthOfSlide = ( carousel.offsetWidth  / carouselDisplaying );
+  lengthOfSlide = (carousel.offsetWidth / carouselDisplaying);
   var initialWidth = -lengthOfSlide;
-  slidesArray.forEach(function(el) {
+  slidesArray.forEach(function (el) {
     el.style.width = lengthOfSlide + "px";
     el.style.left = initialWidth + "px";
     initialWidth += lengthOfSlide;
@@ -73,8 +74,9 @@ var rightNav = document.querySelector('.nav-right');
 rightNav.addEventListener('click', moveLeft);
 
 var moving = true;
+
 function moveRight() {
-  if ( moving ) {
+  if (moving) {
     moving = false;
     var lastSlide = carouselContent.lastElementChild;
     lastSlide.parentNode.removeChild(lastSlide);
@@ -98,7 +100,7 @@ leftNav.addEventListener('click', moveRight);
 // var moveLeftAgain = true;
 
 function moveLeft() {
-  if ( moving ) {
+  if (moving) {
     moving = false;
     removeClone();
     var firstSlide = carouselContent.firstElementChild;
@@ -111,7 +113,7 @@ function replaceToEnd() {
   var firstSlide = carouselContent.firstElementChild;
   firstSlide.parentNode.removeChild(firstSlide);
   carouselContent.appendChild(firstSlide);
-  firstSlide.style.left = ( (arrayOfSlides.length -1) * lengthOfSlide) + "px";
+  firstSlide.style.left = ((arrayOfSlides.length - 1) * lengthOfSlide) + "px";
   addClone();
   moving = true;
   firstSlide.removeEventListener('transitionend', replaceToEnd);
@@ -124,6 +126,7 @@ carouselContent.addEventListener('mousedown', seeMovement);
 
 var initialX;
 var initialPos;
+
 function seeMovement(e) {
   initialX = e.clientX;
   getInitialPos();
@@ -132,12 +135,12 @@ function seeMovement(e) {
 }
 
 function slightMove(e) {
-  if ( moving ) {
+  if (moving) {
     var movingX = e.clientX;
     var difference = initialX - movingX;
-    if ( Math.abs(difference) < (lengthOfSlide/4) ) {
+    if (Math.abs(difference) < (lengthOfSlide / 4)) {
       slightMoveSlides(difference);
-    }  
+    }
   }
 }
 
@@ -145,26 +148,26 @@ function getInitialPos() {
   var slides = document.querySelectorAll('.slide');
   var slidesArray = Array.prototype.slice.call(slides);
   initialPos = [];
-  slidesArray.forEach(function(el){
-    var left = Math.floor( parseInt( el.style.left.slice(0, -2 ) ) ); 
-    initialPos.push( left );
+  slidesArray.forEach(function (el) {
+    var left = Math.floor(parseInt(el.style.left.slice(0, -2)));
+    initialPos.push(left);
   });
 }
 
 function slightMoveSlides(newX) {
   var slides = document.querySelectorAll('.slide');
   var slidesArray = Array.prototype.slice.call(slides);
-  slidesArray.forEach(function(el, i){
+  slidesArray.forEach(function (el, i) {
     var oldLeft = initialPos[i];
     el.style.left = (oldLeft + newX) + "px";
   });
 }
 
-function moveBasedOnMouse(e) { 
+function moveBasedOnMouse(e) {
   var finalX = e.clientX;
-  if ( initialX - finalX > 0) {
+  if (initialX - finalX > 0) {
     moveRight();
-  } else if ( initialX - finalX < 0 ) {
+  } else if (initialX - finalX < 0) {
     moveLeft();
   }
   document.removeEventListener('mouseup', moveBasedOnMouse);
@@ -175,31 +178,31 @@ function moveBasedOnMouse(e) {
 
 carouselContent.addEventListener("touchstart", startTouch, false);
 carouselContent.addEventListener("touchmove", moveTouch, false);
- 
+
 // Swipe Up / Down / Left / Right
 var initialX = null;
 var initialY = null;
- 
+
 function startTouch(e) {
   initialX = e.touches[0].clientX;
   initialY = e.touches[0].clientY;
 };
- 
+
 function moveTouch(e) {
   if (initialX === null) {
     return;
   }
- 
+
   if (initialY === null) {
     return;
   }
- 
+
   var currentX = e.touches[0].clientX;
   var currentY = e.touches[0].clientY;
- 
+
   var diffX = initialX - currentX;
   var diffY = initialY - currentY;
- 
+
   if (Math.abs(diffX) > Math.abs(diffY)) {
     // sliding horizontally
     if (diffX > 0) {
@@ -210,11 +213,11 @@ function moveTouch(e) {
       // swiped right
       console.log("swiped right");
       moveRight();
-    }  
+    }
   }
- 
+
   initialX = null;
   initialY = null;
-   
+
   e.preventDefault();
 };

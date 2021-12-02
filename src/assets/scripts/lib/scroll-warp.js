@@ -1,81 +1,5 @@
-// Hack to detect device scrollbar width.
-// When a mouse is plugged in, the contents of an element will shift over to accomodate the scrollbar.
-// We will detect this and shift the .panel-content's to the left via padding-right, else the panels and the main content view become out of sync.
-(function () {
-  var div = document.createElement('div');
-  div.style.width = '100px';
-  div.style.height = '100px';
-  div.style.overflow = 'scroll';
-  div.style.position = 'absolute';
-  div.style.top = '-9999px';
-  document.body.appendChild(div);
-
-  var scrollBarWidth = div.offsetWidth - div.clientWidth;
-
-  document.body.removeChild(div);
-
-  var style = document.createElement('style');
-  document.querySelector('head').appendChild(style);
-
-  var selector = '.panel-content';
-  var rule = `padding-right: ${scrollBarWidth}px`;
-
-  if (style.sheet) {
-    if (style.sheet.insertRule) style.sheet.insertRule(`${selector} {${rule}}`, 0);
-    else style.sheet.addRule(selector, rule);
-  }
-  else if (style.styleSheet) style.styleSheet.addRule(selector, rule);
-})();
-// document.getElementById("book").addEventListener("click", hello);
-// function hello() {
-// alert('Hello');
-// }
-// function hideLoader() {
-//    console.log($('#loading'));
-//        console.log("should hide");;
-
-//     // $('#loading').hide();
-// }
-
-// $(window).load(function() {
-//   console.log($('#loading'));
-//   $('#loading').classList.add("hide-loading");
-//     console.log($('#loading'));
-
-//      // $('#loading').addClass('hide');
-//     });
-// $(window).ready(hideLoader);
-
-// Strongly recommended: Hide loader after 20 seconds, even if the page hasn't finished loading
-// setTimeout(hideLoader, 20 * 1000);
-
-
-
-var slideDown = false
-function ani() {
-  console.log("inani")
-  if(!slideDown){
-    document.getElementById('ontop').classList.remove('top-animate-backward')
-    document.getElementById('ontop').classList.add('top-animate-forward');
-    slideDown=true;
-  }else{
-    document.getElementById('ontop').classList.remove('top-animate-forward')
-    document.getElementById('ontop').classList.add('top-animate-backward')
-    slideDown=false;
-  }
-
-}
-
-// document.getElementById("change").onclick = function() {myFunction()};
-
-// function myFunction() {
-//   var container = document.getElementById('container');
-//   container.style.left =`30%`
-
-//   // container.style.perspective =`200px`
-//   container.style.perspectiveOrigin =`-100%`
-
-// }
+var tops = [];
+var bottoms = [];
 
 // Each articulation panel consists of three DOM elements
 //  - a grandparent for 3d positioning
@@ -114,19 +38,15 @@ function syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight
 function transYrotX(y,x) {
   return `translate3d(0,${y}px,0) rotateX(${x}rad) rotateY(0)`;
 }
-var tops = [];
-var bottoms = [];
 
 // Create num top and bottom panels based off the innerHTML of el with articulation angle.
 // We nest panels and use `transform-style: preserve-3d` to get the tentacle curl effect.
 // Should probably only use this on relatively simple el's, because we are going to need to create 2 * num deep copies of el and attach them to the DOM. Needless to say, this will scale poorly.
-function createScrollOverlay(el, panelHeight, num, angle) {
-
+export default function scrollWarp(el, panelHeight, num, angle) {
+  console.log(el);
   var topParent = el.parentNode;
   var bottomParent = el.parentNode;
-
   var html = el.innerHTML;
-  
   var totalTheta = 0;
   
   for (var i = 0; i < num; i++) {
@@ -220,47 +140,8 @@ function createScrollOverlay(el, panelHeight, num, angle) {
     requestAnimationFrame(function() {
       syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight);
     });
-
   }
  
   el.onscroll = update;
   window.onresize = update;
-  // setInterval(function() {el.scrollTop++}, 32)
 }
-var theta = 1.1;
-var num = 2;
-// var theta = 1.3;
-
-
-var $ = document.querySelector.bind(document);
-createScrollOverlay($('#content'), 100, num, theta);
-  function message(input) {
-    $('#content').scrollTop = $("#content").offsetTop
-  }
-  function message1(input) {
-    $('#content').scrollTop = $("#gallery").offsetTop
-  }
-  function message2(input) {
-    $('#content').scrollTop = $("#amenities").offsetTop
-  }
-  function message3(input) {
-    $('#content').scrollTop = $("#location").offsetTop
-  }
-  function message4(input) {
-    $('#content').scrollTop = $("#contact").offsetTop
-  }
-  function message5(input) {
-    $('#content').scrollTop = $("#gear").offsetTop
-  }
- function init(){
-  
-    document.getElementById("about-button").addEventListener("click", message, true);
-    document.getElementById("gallery-button").addEventListener("click", message1, true);
-    document.getElementById("amenities-button").addEventListener("click", message2, true);
-    document.getElementById("location-button").addEventListener("click", message3, true);
-    document.getElementById("contact-button").addEventListener("click", message4, true);
-    document.getElementById("gear-button").addEventListener("click", message5, true);
-
-  };
-document.addEventListener('DOMContentLoaded', init, false);
-

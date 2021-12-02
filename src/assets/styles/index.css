@@ -5,7 +5,7 @@ body {
 
 
 #loading {
-    background: url('../load.gif') no-repeat center center;
+    background: url('../images/3d-gifs/capsul-loader.gif') no-repeat center center;
     background-size: 350px;
     background-color: white;
     position: absolute;
@@ -444,7 +444,7 @@ div {
   grid-template-columns: 50% 50%;
 }
 .single-icon img{
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
 }
@@ -452,7 +452,7 @@ div {
   height: 50px;
   display: grid;
   grid-template-rows: 50% 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
   overflow: hidden;  
