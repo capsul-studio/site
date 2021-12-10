@@ -10,7 +10,10 @@
     "build": "parcel build"
   },
   "dependencies": {
-    "@hotwired/stimulus": "^3.0.1"
+    "@hotwired/stimulus": "^3.0.1",
+    "@stripe/stripe-js": "^1.22.0",
+    "calendar-js": "^1.4.4",
+    "timekit-sdk": "^1.19.3"
   },
   "devDependencies": {
     "parcel": "^2.0.1"
