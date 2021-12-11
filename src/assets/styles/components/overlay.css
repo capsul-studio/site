@@ -1,0 +1,91 @@
+.overlay {
+  width: 100%;
+  height: 50px;
+  z-index: 10000000000;
+}
+
+/* Overlay Bar */
+.overlay-bar {
+  background-color: black;
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-bar__button {
+  left: 50%;
+  top: 50%;
+  font-size: 1.4em;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  text-transform: uppercase;
+}
+
+/* overlay Overlay */
+.overlay-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100vh;
+  background: rgba(255,255,255,0.95);
+  z-index: 2;
+  display: none;
+}
+
+.overlay-panel.is-visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  text-indent: 140%;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 50px;
+  border: 2px solid black;
+}
+
+.overlay__close:before,
+.overlay__close:after {
+  position: absolute;
+  border-radius: 3px;
+  content: "";
+  width: 24px;
+  height: 2px;
+  background: black;
+  top: 50%;
+  left: 50%;
+  margin-left: -12px;
+  margin-top: -1px;
+}
+
+.overlay__close:before {
+  transform: rotate(45deg);
+}
+
+.overlay__close:after {
+  transform: rotate(-45deg);
+}
+
+.overlay-panel__content {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+}

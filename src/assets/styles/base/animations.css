@@ -1,0 +1,49 @@
+@keyframes hide-loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  99% {
+    opacity: 0.01;
+    width: 78%;
+    height: 77%;
+  }
+
+  100% {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes swingback {
+  from {
+    height: 50vh;
+  }
+
+  to {
+    height: 0vh;
+    transform: perspective(200px) rotateX(-90deg);
+  }
+}
+
+@keyframes swing {
+  from {
+    height: 0px;
+  }
+
+  to {
+    height: 50vh;
+    transform: perspective(200px) rotateX(0deg);
+  }
+}
+
+@keyframes swing-alt {
+  to {
+    transform: perspective(200px) rotateY(0deg);
+  }
+}

@@ -1,5 +1,5 @@
-/* 
-SuperGif 
+/*
+SuperGif
 -------
 https://github.com/buzzfeed/libgif-js/blob/master/libgif.js
 */
@@ -428,7 +428,6 @@ export default function SuperGif() {
     var setSizes = function (w, h) {
       canvas.width = w * get_canvas_scale();
       canvas.height = h * get_canvas_scale();
-      console.log(w, h, get_canvas_scale())
       toolbar.style.minWidth = (w * get_canvas_scale()) + 'px';
 
       tmpCanvas.width = w;
@@ -524,7 +523,6 @@ export default function SuperGif() {
 
     var doHdr = function (_hdr) {
       hdr = _hdr;
-      // console.log(hdr.width,hdr.height)
       setSizes(hdr.width, hdr.height)
       // setSizes(600,600)
     };
@@ -812,7 +810,6 @@ export default function SuperGif() {
       div.width = canvas.width = gif.width;
       div.height = canvas.height = gif.height;
       toolbar.style.minWidth = gif.width + 'px';
-      console.log(div.width, div.height)
       div.className = 'jsgif studio-gif';
       toolbar.className = 'jsgif_toolbar';
       div.appendChild(canvas);
@@ -835,7 +832,6 @@ export default function SuperGif() {
       if (options.gif.id == "studio-mobile") {
         return 0.5
       }
-      // console.log("options",options.gif.id)
       return (0.5)
 
       // return scale;

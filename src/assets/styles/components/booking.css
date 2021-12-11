@@ -1,0 +1,19 @@
+.booking {
+  width: 100%;
+}
+
+.booking__step {
+  width: 100%;
+}
+
+.booking__step-header {
+  display: flex;
+}
+
+.booking__step-number {
+  padding: 3px 20px;
+  border: 2px solid black;
+  border-radius: 30px;
+  font-size: 1.5em;
+  margin-right: 10px;
+}

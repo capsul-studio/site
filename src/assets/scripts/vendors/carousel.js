@@ -208,10 +208,8 @@ function moveTouch(e) {
     if (diffX > 0) {
       // swiped left
       moveLeft();
-      console.log("swiped left");
     } else {
       // swiped right
-      console.log("swiped right");
       moveRight();
     }
   }

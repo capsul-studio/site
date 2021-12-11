@@ -1,47 +1,43 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-
 .carousel {
   position: relative;
   width: 80%;
-  height: 540px; 
+  height: 540px;
   margin: 0 auto;
   margin-top: 5%;
   margin-bottom: 5%;
 }
+
 @media only screen and (min-width: 100px) and (max-width: 350px ) {
-    .carousel {
-  position: relative;
-  width: 80%;
-  height: 300px; 
-  margin: 0 auto;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  .carousel {
+    position: relative;
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
 }
-}
+
 @media only screen and (min-width: 350px) and (max-width: 376px ) {
-    .carousel {
-  position: relative;
-  width: 80%;
-  height: 350px; 
-  margin: 0 auto;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  .carousel {
+    position: relative;
+    width: 80%;
+    height: 350px;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
 }
-}
+
 @media only screen and (min-width: 376px) and (max-width: 628px ) {
-    .carousel {
-  position: relative;
-  width: 80%;
-  height: 390px; 
-  margin: 0 auto;
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
+  .carousel {
+    position: relative;
+    width: 80%;
+    height: 390px;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
 }
 
 .carousel-content {
@@ -57,22 +53,6 @@
   position: absolute;
   z-index: 10;
   transition: left .4s cubic-bezier(.47,.13,.15,.89);
-}
-
-.slide-2 {
-  background-color: green;
-}
-
-.slide-3 {
-  background-color: red;
-}
-
-.slide-4 {
-  background-color: purple;
-}
-
-.slide-5 {
-  background-color: yellow;
 }
 
 .nav {
