@@ -9,17 +9,17 @@ function panel(html) {
   var panelNode = document.createElement('div');
   var panelCutoutNode = document.createElement('div');
   var panelContentNode = document.createElement('div');
-    
+
   panelNode.classList.add('panel-node');
-  
+
   panelCutoutNode.classList.add('panel-cutout');
-  
+
   panelContentNode.innerHTML = html;
   panelContentNode.classList.add('panel-content');
-  
+
   panelCutoutNode.appendChild(panelContentNode);
   panelNode.appendChild(panelCutoutNode);
-  
+
   return panelNode;
 }
 
@@ -43,12 +43,11 @@ function transYrotX(y,x) {
 // We nest panels and use `transform-style: preserve-3d` to get the tentacle curl effect.
 // Should probably only use this on relatively simple el's, because we are going to need to create 2 * num deep copies of el and attach them to the DOM. Needless to say, this will scale poorly.
 export default function scrollWarp(el, panelHeight, num, angle) {
-  console.log(el);
   var topParent = el.parentNode;
   var bottomParent = el.parentNode;
   var html = el.innerHTML;
   var totalTheta = 0;
-  
+
   for (var i = 0; i < num; i++) {
     var topPanel = panel(html);
     var bottomPanel = panel(html);
@@ -60,7 +59,7 @@ export default function scrollWarp(el, panelHeight, num, angle) {
 
     // topPanel.style.transformOrigin = '50% 0% 0';
     bottomPanel.style.transformOrigin = '50% 0% 0';
-    
+
     var topPanelContent = topPanel.querySelector('.panel-content');
     var bottomPanelContent = bottomPanel.querySelector('.panel-content');
 
@@ -141,7 +140,7 @@ export default function scrollWarp(el, panelHeight, num, angle) {
       syncPanelContent(tops, bottoms, scrollTop, containerHeight, panelHeight);
     });
   }
- 
+
   el.onscroll = update;
   window.onresize = update;
 }

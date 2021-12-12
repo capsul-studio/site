@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ['overlay'];
 
   connect() {
+    this.open();
   }
 
   open() {

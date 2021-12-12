@@ -504,6 +504,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.25rem;
 }
 
+.ml-5 {
+  margin-left: 1.25rem;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -518,10 +522,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-2 {
   margin-top: 0.5rem;
-}
-
-.mb-20 {
-  margin-bottom: 5rem;
 }
 
 .block {
@@ -572,6 +572,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-wrap: wrap;
 }
 
+.items-center {
+  align-items: center;
+}
+
 .border {
   border-width: 1px;
 }
@@ -596,10 +600,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-6 {
   padding-top: 1.5rem;
-}
-
-.pb-20 {
-  padding-bottom: 5rem;
 }
 
 .pb-10 {
@@ -635,9 +635,23 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 @import 'components/carousel.css';
 
+.before\:mr-2::before {
+  content: var(--tw-content);
+  margin-right: 0.5rem;
+}
+
+.before\:content-\[\'-\'\]::before {
+  --tw-content: '-';
+  content: var(--tw-content);
+}
+
 @media (min-width: 1024px) {
   .lg\:mr-12 {
     margin-right: 3rem;
+  }
+
+  .lg\:flex {
+    display: flex;
   }
 
   .lg\:w-1\/2 {
