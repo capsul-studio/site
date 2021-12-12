@@ -559,6 +559,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0px;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -579,8 +583,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
 .w-full {
   width: 100%;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.w-4\/5 {
+  width: 80%;
 }
 
 .max-w-4xl {
@@ -603,6 +619,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 1px;
 }
 
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -619,6 +640,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1.5rem;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -629,6 +654,31 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.25rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -637,8 +687,33 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.75rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
+.pb-20 {
+  padding-bottom: 5rem;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 @import 'base/resets.css';
@@ -664,5 +739,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:flex-nowrap {
     flex-wrap: nowrap;
+  }
+
+  .lg\:p-0 {
+    padding: 0px;
+  }
+
+  .lg\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
