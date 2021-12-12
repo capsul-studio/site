@@ -1,7 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import 'base/resets.css';
 @import 'base/animations.css';
 @import 'base/clean-up-later.css';
-
 @import 'components/overlay.css';
 @import 'components/booking.css';
 @import 'components/carousel.css';
