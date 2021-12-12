@@ -164,14 +164,6 @@
   transform: translate(-50%, -50%) rotateY(0deg);
 }
 
-#container p {
-  padding: 0 5px 0 5px;
-}
-
-#container hr {
-  margin: 0 20px 0 20px;
-}
-
 .panel-node {
   width: 100%;
   -webkit-perspective: 200px;
