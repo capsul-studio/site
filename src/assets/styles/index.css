@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  a,
+  a:hover {
+    @apply text-gray-600 underline;
+  }
+}
+
 @import 'base/resets.css';
 @import 'base/animations.css';
 @import 'base/clean-up-later.css';

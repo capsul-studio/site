@@ -6,35 +6,3 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-
-a,
-a:hover {
-  color: grey;
-}
-
-.select {
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-  border-radius: 4px;
-  border: 2px solid black;
-  padding: 5px 10px;
-  position: relative;
-}
-
-.select:before {
-  position: absolute;
-  display: block;
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid black;
-  top: 10px;
-  right: 10px;
-  margin-top: -10px;
-  z-index: 1;
-}

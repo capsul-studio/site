@@ -10,11 +10,15 @@ import { Application } from "@hotwired/stimulus"
 import AppController from "./controllers/app_controller"
 import OverlayController from "./controllers/overlay_controller"
 import BookingController from "./controllers/booking_controller"
+import BookingCalendarController from "./controllers/booking_calendar_controller"
+import BookingMonthsController from "./controllers/booking_months_controller"
 
 window.Stimulus = Application.start()
 Stimulus.register("app", AppController)
 Stimulus.register("overlay", OverlayController)
 Stimulus.register("booking", BookingController)
+Stimulus.register("booking-calendar", BookingCalendarController)
+Stimulus.register("booking-months", BookingMonthsController)
 
 const warpConfig = {
   num: 2,
