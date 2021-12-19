@@ -331,13 +331,6 @@
   animation: swingback 1s cubic-bezier(0.75, 0.4, 1, 1) forwards 1s;
 }
 
-.hidden {
-  overflow: hidden;
-  height: 0vh;
-  animation: swingback 1s ease 3.5s forwards;
-}
-
-
 .text {
   display: grid;
   grid-template-columns: 20% 80%;

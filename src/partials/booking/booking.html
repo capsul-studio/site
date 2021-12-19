@@ -1,44 +1,52 @@
-<div class="booking" data-controller="booking">
-  <section class="booking__step">
-    <div class="booking__step-header">
-      <span class="booking__step-number">1</span>
+<div class="booking p-4 w-full" data-controller="booking">
+  <div class="fetch-error text-center hidden">
+    Error while fetching booking data. Please, reload the page. <br>
+    If the error persists, please <a href="#">reach out</a>
+  </div>
+  <section class="w-full py-10">
+    <div class="flex items-center">
+      <span class="inline-block py-1 px-5 border-2 rounded-full text-2xl mr-2 border-black">1</span>
       <h2>When are you looking to book?</h2>
     </div>
-    <div class="booking__step-content">
-      <div class="w-full lg:w-1/2">
-        <div class="grid grid-cols-3 gap-2" data-controller="booking-months">
+    <div class="mt-5">
+      <div class="w-full">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2" data-controller="booking-months">
           <!-- populated with js -->
         </div>
       </div>
 
-      <p class="w-full lg:w-1/2 ml-5">
-        Looking to book more than 3 months out?<br>
-        <a href="#">Reach out</a>
-      </p>
+      <p class="w-full mt-5 text-right text-gray-800">Looking to book more than 3 months out? <a href="#">Reach out</a></p>
     </div>
   </section>
 
-  <section class="booking__step">
-    <div class="booking__step-header">
-      <span class="booking__step-number">2</span>
-      <h2>Select a date</h2>
+  <section class="flex flex-wrap w-full py-10">
+    <div class="w-full flex items-center mb-5">
+      <span class="inline-block py-1 px-5 border-2 rounded-full text-2xl mr-2 border-black">2</span>
+      <h2>Select a date and time</h2>
     </div>
 
-    <div class="booking__step-content">
-      <section class="calendar" data-controller="booking-calendar">
+    <div class="w-full flex flex-wrap lg:flex-nowrap items-stretch">
+      <section class="w-full lg:w-1/2 lg:pr-4" data-controller="booking-calendar">
+        <!-- populated with js -->
+      </section>
+
+      <section class="w-full lg:w-1/2 lg:pl-4 over" data-controller="booking-time">
         <!-- populated with js -->
       </section>
     </div>
+
+    <p class="w-full mt-5 text-right text-gray-800">Can't find a time that suits you? <a href="#">Reach out</a></p>
+
   </section>
 
-  <section class="booking__step">
-    <div class="booking__step-header">
-      <span class="booking__step-number">2</span>
+  <section class="w-full py-10">
+    <div class="flex items-center">
+      <span class="inline-block py-1 px-5 border-2 rounded-full text-2xl mr-2 border-black">2</span>
       <h2>Select a date</h2>
     </div>
   </section>
 
-  <section class="booking__step">
+  <section class="w-full py-10">
 
   </section>
 </div>

@@ -22,26 +22,32 @@ export default class extends Controller {
           data-month="${month}"
           class="p-2 border-2 border-black rounded hover:bg-black hover:text-white"
         >
-          ${monthNames[month]} ${year}
+          ${monthNames[month - 1]} ${year}
         </button>
       `
     }, '');
   }
 
   update(newState) {
-    // Render button if new state
-    if (newState.monthsAvailableToBook !== this.state.monthsAvailableToBook) {
-      this.renderMonthButtons(newState.monthsAvailableToBook)
+    try {
+      // Render button if new state
+      if (newState.monthsAvailableToBook !== this.state.monthsAvailableToBook) {
+        this.renderMonthButtons(newState.monthsAvailableToBook)
+      }
+
+      // Set active button
+      this.buttonTargets.forEach(button => {
+        const buttonYear = Number(button.dataset.year)
+        const buttonMonth = Number(button.dataset.month)
+        button.classList.toggle('bg-black', (buttonYear == newState.year && buttonMonth == newState.month))
+        button.classList.toggle('text-white', (buttonYear == newState.year && buttonMonth == newState.month))
+      })
+
+      this.state = newState;
     }
+    catch (error) {
+      console.error('Could not render booking months component.', error)
 
-    // Set active button
-    this.buttonTargets.forEach(button => {
-      const buttonYear = Number(button.dataset.year)
-      const buttonMonth = Number(button.dataset.month)
-      button.classList.toggle('bg-black', (buttonYear == newState.year && buttonMonth == newState.month))
-      button.classList.toggle('text-white', (buttonYear == newState.year && buttonMonth == newState.month))
-    })
-
-    this.state = newState;
+    }
   }
 }
