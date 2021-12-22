@@ -14,6 +14,7 @@ export default class extends Controller {
     try {
       if (newState.date === this.currentDateValue) return
       if (!newState.date) { this.clear(); return }
+      if (newState.date !== this.currentDateValue) this.clearTimeSelection()
 
       this.siblingTimeslotsValue = this.parseTimeslots(newState)
       this.minimumTimeslotToBookValue = newState.minimumTimeslotToBook
@@ -28,21 +29,25 @@ export default class extends Controller {
     this.element.innerHTML = htmlTimeslotsComponent(this.siblingTimeslotsValue, this.minimumTimeslotToBookValue)
   }
 
-  clear() {
-    this.element.innerHTML = ''
-  }
-
-  clearTimeSelection() {
-    this.startTimeslotValue = ''
-    this.endTimeslotValue = ''
-    this.render()
-  }
+  // value change methods
 
   startTimeslotValueChanged() {
     Promise.resolve().then(() => {
       this.toggleFirstStepTip(!this.startTimeslotValue)
       this.toggleSecondStepTip(!!this.startTimeslotValue)
     })
+  }
+
+  // methods
+
+  clear() {
+    this.element.innerHTML = ''
+  }
+
+  clearTimeSelection(rerender) {
+    this.startTimeslotValue = ''
+    this.endTimeslotValue = ''
+    if (rerender) this.render()
   }
 
   toggleFirstStepTip(visible) {
@@ -52,6 +57,7 @@ export default class extends Controller {
   toggleSecondStepTip(visible) {
     if (this.hasSecondStepTipTarget) this.secondStepTipTarget.classList.toggle('hidden', !visible)
   }
+
 
   parseTimeslots(newState) {
     let dateMonthAndYear = newState.date.substring(0,7)
@@ -87,35 +93,38 @@ export default class extends Controller {
     const timeslotIndex = Number(targetTimeslotId.split('-')[1])
     const siblings = this.siblingTimeslotsValue[groupIndex]
 
-    // check if start is empty and not last sibling
+    // If start time is empty and clicked timeslot is not last on its group
     if (!this.startTimeslotValue && (timeslotIndex+ this.minimumTimeslotToBookValue) <= siblings.length) {
       this.startTimeslotValue = targetTimeslotId
       this.endTimeslotValue = `${groupIndex}-${timeslotIndex+ this.minimumTimeslotToBookValue - 1 }`
       return
     }
 
-    // If start is empty but selected timeslot is last of siblings array -> set this as endTimeslot and generate startTimeslot
+    // If start is empty but selected timeslot is last of its group, we set it as endTimeslot and calculate startTimeslot
     if (!this.startTimeslotValue && timeslotIndex + this.minimumTimeslotToBookValue > siblings.length) {
       this.startTimeslotValue = `${groupIndex}-${siblings.length - this.minimumTimeslotToBookValue}`
       this.endTimeslotValue = `${groupIndex}-${siblings.length - 1}`
       return
     }
 
-    // If start and end already exists and new time belongs to other group reset and rerun function
+    // If start and end already exist and new time belongs to other group reset and rerun function
     if (this.startTimeslotValue.split('-')[0] != groupIndex) {
-      this.clearTimeSelection()
+      this.clearTimeSelection(true)
       this.setStartAndEndTimeslots(targetTimeslotId)
       return
     }
 
+    // If same timeslot group and clicked timeslot is past the existing end time slot
     if (this.startTimeslotValue.split('-')[0] == groupIndex && this.endTimeslotValue.split('-')[1] < timeslotIndex) {
       this.endTimeslotValue = `${groupIndex}-${timeslotIndex}`
       return
     }
 
-
-    // check if end already exists and belongs to same group
-    // check if last of siblings and change start to N timeslots before where N is minimumBookValue
+    // If same timeslot group and clicked timeslot is before the existing start time slot
+    if (this.startTimeslotValue.split('-')[0] == groupIndex && this.startTimeslotValue.split('-')[1] > timeslotIndex) {
+      this.startTimeslotValue = `${groupIndex}-${timeslotIndex}`
+      return
+    }
   }
 
   disableInvalidSibling() {
@@ -148,7 +157,6 @@ export default class extends Controller {
 }
 
 // Private templates
-
 htmlTimeslotsComponent = (siblingTimeslotsArray, minimumTimeslotToBook) => `
   <div class="border-2 border-black rounded-lg w-full h-full flex flex-col">
     <div class="w-full h-12 flex items-center justify-center border-b-2 border-black shrink-0" data-booking-time-target="firstStepTip">
@@ -161,7 +169,7 @@ htmlTimeslotsComponent = (siblingTimeslotsArray, minimumTimeslotToBook) => `
       <div class="grid grid-cols-1 gap-2">
         ${
           siblingTimeslotsArray.reduce((html, timeslots, groupIndex) => {
-            return groupIndex > 0 ? html + htmlSeparator() + htmlTimeslots(timeslots, groupIndex, minimumTimeslotToBook) :  html + htmlTimeslots(timeslots, groupIndex, minimumTimeslotToBook)
+            return html + (groupIndex > 0 ? htmlSeparator() : '') + htmlTimeslots(timeslots, groupIndex, minimumTimeslotToBook)
           }, '')
         }
       </div>
@@ -170,9 +178,7 @@ htmlTimeslotsComponent = (siblingTimeslotsArray, minimumTimeslotToBook) => `
 `
 
 htmlTimeslots = (timeslots, groupIndex, minimumTimeslotToBook) => {
-  if (timeslots.length < minimumTimeslotToBook) {
-    return ''
-  }
+  if (timeslots.length < minimumTimeslotToBook) { return '' }
 
   return timeslots.reduce((html, timeslot, index) => {
     return html + htmlTimeslotButton(timeslot.start, timeslot.end, groupIndex, index)
