@@ -20,7 +20,7 @@ export default class extends Controller {
           data-action="booking#selectMonth"
           data-year="${year}"
           data-month="${month}"
-          class="p-2 border-2 border-black rounded hover:bg-black hover:text-white"
+          class="p-2 border-2 border-black rounded hover:bg-true-gray-700 hover:text-white"
         >
           ${monthNames[month - 1]} ${year}
         </button>

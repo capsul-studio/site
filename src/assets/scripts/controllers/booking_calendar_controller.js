@@ -1,10 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
-import Calendar from "calendar-js";
+import { Controller } from '@hotwired/stimulus'
+import Calendar from 'calendar-js'
 
 export default class extends Controller {
-  update(newState) {
+  update (newState) {
     try {
-      if (!newState.year || !newState.month) return;
+      if (!newState.year || !newState.month) return
 
       let calendarHTML = ''
       const calendar = Calendar().of(newState.year, newState.month - 1)
@@ -19,7 +19,7 @@ export default class extends Controller {
     }
   }
 
-  generateCalendarHeaderHTML(calendar) {
+  generateCalendarHeaderHTML (calendar) {
     return `
       <div class="w-full h-12 flex items-center justify-center border-2 border-black border-b-0 rounded-t-lg">
         ${calendar.month} ${calendar.year}
@@ -27,7 +27,7 @@ export default class extends Controller {
     `
   }
 
-  generateCalendarWeekdaysHTML(calendar) {
+  generateCalendarWeekdaysHTML (calendar) {
     const calendarWeekdaysHTML = calendar.weekdays.reduce((html, weekday) => {
       return `
         ${html}
@@ -44,23 +44,23 @@ export default class extends Controller {
     `
   }
 
-  generateCalendarDaysHTML(calendar, state) {
+  generateCalendarDaysHTML (calendar, state) {
     let calendarDaysHTML = ''
 
-    calendar.calendar.forEach(row => {
+    calendar.calendar.forEach((row) => {
       calendarDaysHTML += '<div class="grid grid-cols-7 gap-2">'
 
-      row.forEach(day => {
+      row.forEach((day) => {
         if (day > 0) {
-          const dayDate = `${state.year}-${String(state.month).padStart(2, '0')}-${String(day).padStart(2,'0')}`;
+          const dayDate = `${state.year}-${String(state.month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
 
           calendarDaysHTML += `
             <div class="w-auto h-12 flex items-center justify-center">
               <button
-                class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-black hover:text-white disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gray-400 ${ state.date === dayDate ? 'bg-black text-white' : ''}"
+                class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-true-gray-700 hover:text-white disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gray-400 ${state.date === dayDate ? 'bg-black text-white' : ''}"
                 data-action="booking#selectDay"
                 data-day="${dayDate}"
-                ${ this.dayHasAvailability(dayDate, state.availability) ? '' : 'disabled' }
+                ${this.dayHasAvailability(dayDate, state.availability) ? '' : 'disabled'}
               >
                 ${day}
               </button>
@@ -78,17 +78,17 @@ export default class extends Controller {
       <div class="py-2 rounded-b-lg border-2 border-black border-t-0">
         ${calendarDaysHTML}
       </div>
-    `;
+    `
   }
 
-  dayHasAvailability(date, availability) {
-    const yearAndMonth = date.substring(0,7)
-    const day = date.substring(8,10)
+  dayHasAvailability (date, availability) {
+    const yearAndMonth = date.substring(0, 7)
+    const day = date.substring(8, 10)
 
-    if (availability[yearAndMonth] && availability[yearAndMonth][day] &&  availability[yearAndMonth][day].length) {
-      return true;
+    if (availability[yearAndMonth] && availability[yearAndMonth][day] && availability[yearAndMonth][day].length) {
+      return true
     }
 
-    return false;
+    return false
   }
 }

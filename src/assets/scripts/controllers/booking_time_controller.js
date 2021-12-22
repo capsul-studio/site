@@ -8,6 +8,8 @@ export default class extends Controller {
     minimumTimeslotToBook: Number,
     startTimeslot: String,
     endTimeslot: String,
+    hoverStartTimeslot: String,
+    hoverEndTimeslot: String,
   }
 
   update(newState) {
@@ -83,48 +85,73 @@ export default class extends Controller {
   selectTimeslot(event) {
     event.preventDefault()
     const targetTimeslotId = event.currentTarget.dataset.timeId
-    this.setStartAndEndTimeslots(targetTimeslotId)
+
+    const {startTime, endTime} = this.calculateStartAndEndTimeslots(targetTimeslotId)
+    this.startTimeslotValue = startTime
+    this.endTimeslotValue = endTime
+
     this.disableInvalidSibling()
     this.selectBookedTimeslots()
   }
 
-  setStartAndEndTimeslots(targetTimeslotId) {
+  hoverTimeslot(event) {
+    const targetTimeslotId = event.currentTarget.dataset.timeId
+
+    const {startTime, endTime} = this.calculateStartAndEndTimeslots(targetTimeslotId)
+    this.hoverStartTimeslotValue = startTime
+    this.hoverEndTimeslotValue = endTime
+
+    this.highlightPotentialBookingTimeslots()
+  }
+
+  clearHoverTimeslot(event) {
+    this.hoverStartTimeslotValue = ''
+    this.hoverEndTimeslotValue = ''
+    this.highlightPotentialBookingTimeslots()
+  }
+
+  calculateStartAndEndTimeslots(targetTimeslotId) {
     const groupIndex = Number(targetTimeslotId.split('-')[0])
     const timeslotIndex = Number(targetTimeslotId.split('-')[1])
     const siblings = this.siblingTimeslotsValue[groupIndex]
 
+    let startTime = this.startTimeslotValue
+    let endTime = this.endTimeslotValue
+
     // If start time is empty and clicked timeslot is not last on its group
-    if (!this.startTimeslotValue && (timeslotIndex+ this.minimumTimeslotToBookValue) <= siblings.length) {
-      this.startTimeslotValue = targetTimeslotId
-      this.endTimeslotValue = `${groupIndex}-${timeslotIndex+ this.minimumTimeslotToBookValue - 1 }`
-      return
+    if (!startTime && (timeslotIndex+ this.minimumTimeslotToBookValue) <= siblings.length) {
+      startTime = targetTimeslotId
+      endTime = `${groupIndex}-${timeslotIndex+ this.minimumTimeslotToBookValue - 1 }`
+      return { startTime, endTime }
     }
 
     // If start is empty but selected timeslot is last of its group, we set it as endTimeslot and calculate startTimeslot
-    if (!this.startTimeslotValue && timeslotIndex + this.minimumTimeslotToBookValue > siblings.length) {
-      this.startTimeslotValue = `${groupIndex}-${siblings.length - this.minimumTimeslotToBookValue}`
-      this.endTimeslotValue = `${groupIndex}-${siblings.length - 1}`
-      return
+    if (!startTime && timeslotIndex + this.minimumTimeslotToBookValue > siblings.length) {
+      startTime = `${groupIndex}-${siblings.length - this.minimumTimeslotToBookValue}`
+      endTime = `${groupIndex}-${siblings.length - 1}`
+      return { startTime, endTime }
     }
 
     // If start and end already exist and new time belongs to other group reset and rerun function
-    if (this.startTimeslotValue.split('-')[0] != groupIndex) {
+    if (startTime.split('-')[0] != groupIndex) {
       this.clearTimeSelection(true)
-      this.setStartAndEndTimeslots(targetTimeslotId)
-      return
+      return this.calculateStartAndEndTimeslots(targetTimeslotId)
     }
 
     // If same timeslot group and clicked timeslot is past the existing end time slot
-    if (this.startTimeslotValue.split('-')[0] == groupIndex && this.endTimeslotValue.split('-')[1] < timeslotIndex) {
-      this.endTimeslotValue = `${groupIndex}-${timeslotIndex}`
-      return
+    if (startTime.split('-')[0] == groupIndex && endTime.split('-')[1] < timeslotIndex) {
+      endTime = `${groupIndex}-${timeslotIndex}`
+      return { startTime, endTime }
     }
 
     // If same timeslot group and clicked timeslot is before the existing start time slot
-    if (this.startTimeslotValue.split('-')[0] == groupIndex && this.startTimeslotValue.split('-')[1] > timeslotIndex) {
-      this.startTimeslotValue = `${groupIndex}-${timeslotIndex}`
-      return
+    if (startTime.split('-')[0] == groupIndex && startTime.split('-')[1] > timeslotIndex) {
+      startTime = `${groupIndex}-${timeslotIndex}`
+      return { startTime, endTime }
     }
+
+
+    return { startTime, endTime }
   }
 
   disableInvalidSibling() {
@@ -152,6 +179,28 @@ export default class extends Controller {
       const childCheckbox = timeslotLabel.querySelector('input')
 
       if (startIndex <= thisTimeslotIndex && thisTimeslotIndex <= endIndex) childCheckbox.checked = true
+    })
+  }
+
+  highlightPotentialBookingTimeslots() {
+    const groupIndex = Number(this.hoverStartTimeslotValue.split('-')[0])
+    const startIndex = Number(this.hoverStartTimeslotValue.split('-')[1])
+    const endIndex = Number(this.hoverEndTimeslotValue.split('-')[1])
+
+    this.timeslotLabelTargets.forEach(timeslotLabel => {
+      const thisGroupIndex = Number(timeslotLabel.dataset.timeId.split('-')[0])
+
+      if (thisGroupIndex != groupIndex) return
+
+      const thisTimeslotIndex = Number(timeslotLabel.dataset.timeId.split('-')[1])
+      const childSpan = timeslotLabel.querySelector('span')
+      const childCheckbox = timeslotLabel.querySelector('input')
+      const shouldHighlight = startIndex <= thisTimeslotIndex && thisTimeslotIndex <= endIndex && !childCheckbox.checked
+
+      childSpan.classList.toggle('bg-white', !shouldHighlight)
+      childSpan.classList.toggle('bg-true-gray-600', shouldHighlight)
+      childSpan.classList.toggle('border-true-gray-600', shouldHighlight)
+      childSpan.classList.toggle('text-white', shouldHighlight)
     })
   }
 }
@@ -190,7 +239,7 @@ htmlSeparator = () => '<div class="w-full h-px my-2 border-b-4 border-dotted bor
 htmlTimeslotButton = (start, end, groupIndex, index) => `
   <label
     for="timeslot-${groupIndex}-${index}"
-    data-action="click->booking-time#selectTimeslot"
+    data-action="click->booking-time#selectTimeslot mouseover->booking-time#hoverTimeslot mouseout->booking-time#clearHoverTimeslot"
     data-booking-time-target="timeslotLabel"
     data-time-start="${start}"
     data-time-end="${end}"
@@ -199,8 +248,28 @@ htmlTimeslotButton = (start, end, groupIndex, index) => `
     class="cursor-pointer"
   >
     <input type="checkbox" id="timeslot-${groupIndex}-${index}" class="peer sr-only"/>
-    <span class="block bg-white w-full text-center p-2 border-2 border-black rounded hover:bg-black hover:text-white peer-disabled:opacity-30 peer-disabled:hover:bg-white peer-disabled:hover:text-black peer-checked:bg-black peer-checked:text-white">
-      <span class="sr-only">Click to book from </span> ${start.substring(11,16)} to ${end.substring(11,16)}
+    <span class="
+      block
+      w-full
+      text-center
+      p-2
+      bg-white
+      border-2
+      border-black
+      rounded
+      transition-all
+      duration-75
+      hover:bg-true-gray-600
+      hover:text-white
+      peer-disabled:opacity-30
+      peer-disabled:hover:bg-white
+      peer-disabled:hover:text-black
+      peer-checked:bg-black
+      peer-checked:border-black
+      peer-checked:hover:border-black
+      peer-checked:text-white
+    ">
+     <span class="sr-only">Click to book from </span> ${start.substring(11,16)} to ${end.substring(11,16)}
     </span>
   </label>
 `
