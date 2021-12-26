@@ -1,0 +1,22 @@
+{
+  "live": {
+    "space": {
+      "id": "prod_Kqi5aEopP7KiaC",
+      "price": "price_1KB0fiIL2iHdJbfr1rZvhEWM"
+    },
+    "cleaning": {
+      "id": "prod_Kqi6fjN2bM83Mm",
+      "price": "price_1KB0gLIL2iHdJbfrbODiRQ3G"
+    }
+  },
+  "test": {
+    "space": {
+      "id": "prod_Kqi5aEopP7KiaC",
+      "price": "price_1KB0fiIL2iHdJbfr1rZvhEWM"
+    },
+    "cleaning": {
+      "id": "prod_Kqi6fjN2bM83Mm",
+      "price": "price_1KB0gLIL2iHdJbfrbODiRQ3G"
+    }
+  }
+}

@@ -34,3 +34,6 @@ node_modules/
 dist/
 .cache/
 .parcel-cache/
+
+# Local Netlify folder
+.netlify

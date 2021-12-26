@@ -15,7 +15,9 @@ export default class extends Controller {
         monthsAvailableToBook: [],
         minimumTimeslotToBook: 2,
         timeslotSize: .5, // in hours
-        bookings: []
+        bookings: [],
+        spaceProduct: null,
+        cleaningProduct: null
       }
     }
   }
@@ -32,6 +34,7 @@ export default class extends Controller {
       this.bookingMonthsController = this.application.getControllerForElementAndIdentifier(monthsElement, 'booking-months')
       this.bookingTimeController = this.application.getControllerForElementAndIdentifier(timeElement, 'booking-time')
       this.fetchAvailability()
+      this.fetchProducts()
     });
   }
 
@@ -55,6 +58,19 @@ export default class extends Controller {
     this.stateValue.day = Number(event.currentTarget.dataset.day.substring(8,10))
     this.stateValue.date = `${this.stateValue.year}-${String(this.stateValue.month).padStart(2, '0')}-${String(this.stateValue.day).padStart(2,'0')}`
     this.updateChildren()
+  }
+
+  async fetchProducts() {
+    fetch('/.netlify/functions/stripe-products', { headers: { accept: "application/json" } })
+      .then(response => response.json())
+      .then(data => {
+        this.stateValue.spaceProduct = data.spaceProduct
+        this.stateValue.cleaningProduct = data.cleaningProduct
+      })
+      .catch((err) => {
+        console.error('Could not fetch product prices.')
+        this.element.classList.add('has-fetch-error')
+      })
   }
 
   fetchAvailability() {
