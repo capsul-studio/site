@@ -33,9 +33,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers: responseHeaders,
-      body: JSON.stringify({
-        customer,
-      }),
+      body: JSON.stringify(customer),
     }
   }
 }

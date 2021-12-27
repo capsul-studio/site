@@ -19,8 +19,29 @@ exports.handler = async (event) => {
   }
 
   if (event.httpMethod === 'POST') {
-    const quantity = event.queryStringParameters.qty || 1
-    const session = await stripe.checkout.sessions.create({
+    const body = JSON.parse(event.body)
+
+    const quantity = body.quantity || 1
+    const customer = body.customer
+    const start = body.startTime
+    const end = body.endTime
+    const bookingId = body.bookingId
+
+    if (!customer || !bookingId) {
+      return {
+        statusCode: 400,
+        headers: responseHeaders,
+        body: JSON.stringify({ message: 'Body is missing [customer] or [bookingId] attributes.' }),
+      }
+    }
+
+    const data = {
+      customer,
+      metadata: {
+        start_time: start,
+        end_time: end,
+        booking_id: bookingId,
+      },
       line_items: [
         {
           price: spaceProduct.price,
@@ -31,13 +52,14 @@ exports.handler = async (event) => {
           quantity: 1,
         },
       ],
-      phone_number_collection: {
-        enabled: true,
-      },
+      phone_number_collection: { enabled: true },
       mode: 'payment',
-      success_url: `${process.env.URL}/success.html`,
-      cancel_url: `${process.env.URL}/cancel.html`,
-    })
+      success_url: `${process.env.URL}/booking-success.html`,
+      cancel_url: `${process.env.URL}/booking-cancel.html`,
+      expires_at: Date.now() + 3600, // 1 hour from event
+    }
+
+    const session = await stripe.checkout.sessions.create(data)
 
     return {
       statusCode: 200,

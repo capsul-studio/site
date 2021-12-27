@@ -7,15 +7,15 @@
   }
 
   .btn {
-    @apply font-semibold py-2 px-4 rounded;
+    @apply font-semibold py-2 px-4 rounded disabled:text-true-gray-500 disabled:cursor-not-allowed;
   }
 
   .btn.btn--black {
-    @apply bg-black text-white;
+    @apply bg-black text-white disabled:bg-true-gray-500;
   }
 
   .btn--black:hover {
-    @apply bg-true-gray-700;
+    @apply bg-true-gray-700 disabled:bg-true-gray-500;
   }
 
 }

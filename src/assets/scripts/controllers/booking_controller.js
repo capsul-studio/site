@@ -60,7 +60,7 @@ export default class extends Controller {
     this.updateChildren()
   }
 
-  async fetchProducts() {
+  fetchProducts() {
     fetch('/.netlify/functions/stripe-products', { headers: { accept: "application/json" } })
       .then(response => response.json())
       .then(({spaceProduct, cleaningProduct}) => {
