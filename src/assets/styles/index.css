@@ -11,6 +11,7 @@
 
 @import 'base/resets.css';
 @import 'base/animations.css';
+@import 'base/generic.css';
 @import 'base/clean-up-later.css';
 @import 'components/overlay.css';
 @import 'components/booking.css';

@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { toReadableHour } from "../helpers/shared"
 
 export default class extends Controller {
   static targets = ["timeslotLabel", "firstStepTip", "secondStepTip"]
@@ -29,6 +30,17 @@ export default class extends Controller {
 
   render() {
     this.element.innerHTML = htmlTimeslotsComponent(this.siblingTimeslotsValue, this.minimumTimeslotToBookValue)
+  }
+
+  broadcastSelection() {
+    const broadcast = new CustomEvent("booking--time--changed", {
+      detail: {
+        startTime: this.timeslotLabelTargets.find(label => label.dataset.timeId === this.startTimeslotValue).dataset.timeStart,
+        endTime: this.timeslotLabelTargets.find(label => label.dataset.timeId === this.endTimeslotValue).dataset.timeEnd,
+        quantity: this.timeslotLabelTargets.filter(label => label.querySelector('input').checked === true).length
+      }
+    })
+    window.dispatchEvent(broadcast)
   }
 
   // value change methods
@@ -92,6 +104,7 @@ export default class extends Controller {
 
     this.disableInvalidSibling()
     this.selectBookedTimeslots()
+    this.broadcastSelection()
   }
 
   hoverTimeslot(event) {
@@ -198,9 +211,7 @@ export default class extends Controller {
       const shouldHighlight = startIndex <= thisTimeslotIndex && thisTimeslotIndex <= endIndex && !childCheckbox.checked
 
       childSpan.classList.toggle('bg-white', !shouldHighlight)
-      childSpan.classList.toggle('bg-true-gray-600', shouldHighlight)
-      childSpan.classList.toggle('border-true-gray-600', shouldHighlight)
-      childSpan.classList.toggle('text-white', shouldHighlight)
+      childSpan.classList.toggle('bg-true-gray-300', shouldHighlight)
     })
   }
 }
@@ -259,8 +270,7 @@ htmlTimeslotButton = (start, end, groupIndex, index) => `
       rounded
       transition-all
       duration-75
-      hover:bg-true-gray-600
-      hover:text-white
+      hover:bg-true-gray-300
       peer-disabled:opacity-30
       peer-disabled:hover:bg-white
       peer-disabled:hover:text-black
@@ -269,7 +279,7 @@ htmlTimeslotButton = (start, end, groupIndex, index) => `
       peer-checked:hover:border-black
       peer-checked:text-white
     ">
-     <span class="sr-only">Click to book from </span> ${start.substring(11,16)} to ${end.substring(11,16)}
+     <span class="sr-only">Click to book from </span> ${toReadableHour(start)} to ${toReadableHour(end)}
     </span>
   </label>
 `

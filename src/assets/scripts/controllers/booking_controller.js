@@ -63,9 +63,13 @@ export default class extends Controller {
   async fetchProducts() {
     fetch('/.netlify/functions/stripe-products', { headers: { accept: "application/json" } })
       .then(response => response.json())
-      .then(data => {
-        this.stateValue.spaceProduct = data.spaceProduct
-        this.stateValue.cleaningProduct = data.cleaningProduct
+      .then(({spaceProduct, cleaningProduct}) => {
+        this.stateValue.spaceProduct = spaceProduct
+        this.stateValue.cleaningProduct = cleaningProduct
+
+        const event = new CustomEvent("stripe--products--fetched", { detail: { spaceProduct, cleaningProduct }})
+        window.dispatchEvent(event)
+
       })
       .catch((err) => {
         console.error('Could not fetch product prices.')

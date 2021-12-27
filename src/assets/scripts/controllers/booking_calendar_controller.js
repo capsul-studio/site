@@ -57,7 +57,7 @@ export default class extends Controller {
           calendarDaysHTML += `
             <div class="w-auto h-12 flex items-center justify-center">
               <button
-                class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-true-gray-700 hover:text-white disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gray-400 ${state.date === dayDate ? 'bg-black text-white' : ''}"
+                class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gray-400 ${state.date === dayDate ? 'bg-black hover:bg-black text-white' : 'hover:bg-true-gray-300'}"
                 data-action="booking#selectDay"
                 data-day="${dayDate}"
                 ${this.dayHasAvailability(dayDate, state.availability) ? '' : 'disabled'}

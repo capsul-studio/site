@@ -21,7 +21,28 @@ const getFutureDate = (days) => {
   return new Date(new Date().setDate(new Date().getDate() + days)).toISOString().substring(0, 10)
 }
 
+const toCurrency = (amount, currency) => {
+  const c = new Intl.NumberFormat('en-CA', {
+    style: 'currency',
+    currency: currency || 'CAD',
+    minimumFractionDigits: 2,
+  })
+
+  return c.format(amount / 100)
+}
+
+const toReadableHour = (dateString) => {
+  return new Intl.DateTimeFormat('en-CA', { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateString))
+}
+
+const toReadableDate = (dateString) => {
+  return new Intl.DateTimeFormat('en-CA', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(dateString))
+}
+
 export {
   getFutureDate,
   getMonths,
+  toCurrency,
+  toReadableHour,
+  toReadableDate,
 }

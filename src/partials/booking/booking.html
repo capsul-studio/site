@@ -1,6 +1,6 @@
 <div class="booking p-4 w-full" data-controller="booking">
   <div class="fetch-error text-center hidden">
-    Error while fetching booking data. Please, reload the page. <br>
+    Error while fetching booking information. Please, reload the page. <br>
     If the error persists, please <a href="#">reach out</a>
   </div>
 
@@ -46,11 +46,53 @@
       <h2>Review and Checkout</h2>
     </div>
 
-    <div class="w-full flex flex-wrap lg:flex-nowrap items-stretch">
-      <section class="w-full lg:w-1/2 lg:pl-4" data-controller="booking-summary">
+    <div
+      class="w-full flex flex-wrap lg:flex-nowrap"
+      data-controller="booking-cart"
+      data-action="
+        stripe--products--fetched@window->booking-cart#update
+        booking--time--changed@window->booking-cart#update
+      "
+      >
+      <section class="w-full lg:w-1/2 lg:pr-4">
+        <div class="border-2 border-black rounded p-4">
+          <article class="flex w-full py-2 border-b border-dotted border-true-gray-300">
+            <span>
+              <span class="font-semibold" data-booking-cart-target="spaceProductTitle"></span><br>
+              <span data-booking-cart-target="spaceProductDescription"></span><br>
+              <span data-booking-cart-target="bookingTime"></span>
+            </span>
+            <span class="ml-auto text-right">
+              <span data-booking-cart-target="spaceProductPrice"></span><br>
+              <span data-booking-cart-target="spaceProductQuantity"></span>
+            </span>
+          </article>
 
-        <!-- populated with js -->
+          <article class="flex w-full py-2 border-b border-dotted border-true-gray-300">
+            <span>
+              <span class="font-semibold" data-booking-cart-target="cleaningProductTitle"></span><br>
+              <span data-booking-cart-target="cleaningProductDescription"></span>
+            </span>
+            <span class="ml-auto font-normal" data-booking-cart-target="cleaningProductPrice"></span>
+          </article>
+          <p class="flex font-semibold border-2-t border-black pt-2 mt-2">Estimated Total <span class="ml-auto font-normal" data-booking-cart-target="estimatedTotal"></span></p>
+        </div>
       </section>
-    </div>
+
+      <section class="w-full lg:w-1/2 lg:pl-4">
+        <form data-controller="booking-form" >
+          <div class="mb-4">
+            <label for="booking-name-input" class="w-full block">Full name *</label>
+            <input id="booking-name-input" class="input" type="text" placeholder="Full name" required minlength="3">
+          </div>
+          <div class="mb-4">
+            <label for="booking-email-input" class="w-full block">Email *</label>
+            <input id="booking-email-input" class="input" type="email" placeholder="you@email.com" required>
+          </div>
+          <div>
+            <button type="submit" class="btn btn--black w-full">Pay with Stripe</button>
+          </div>
+        </form>
+      </div>
   </section>
 </div>

@@ -14,7 +14,7 @@ import BookingController from './controllers/booking_controller'
 import BookingCalendarController from './controllers/booking_calendar_controller'
 import BookingMonthsController from './controllers/booking_months_controller'
 import BookingTimeController from './controllers/booking_time_controller'
-import BookingSummaryController from './controllers/booking_summary_controller'
+import BookingCartController from './controllers/booking_cart_controller'
 
 window.Stimulus = Application.start()
 Stimulus.register('app', AppController)
@@ -23,7 +23,7 @@ Stimulus.register('booking', BookingController)
 Stimulus.register('booking-months', BookingMonthsController)
 Stimulus.register('booking-calendar', BookingCalendarController)
 Stimulus.register('booking-time', BookingTimeController)
-Stimulus.register('booking-summary', BookingSummaryController)
+Stimulus.register('booking-cart', BookingCartController)
 
 const warpConfig = {
   num: 2,
