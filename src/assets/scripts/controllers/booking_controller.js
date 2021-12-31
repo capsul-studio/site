@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
+import timekit from "../lib/timekit";
 import { getMonths, getFutureDate } from '../helpers/shared'
-import timekit from '../lib/timekit'
 import * as MockData from './data.json';
 
 export default class extends Controller {
@@ -23,6 +23,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log(timekit);
     const calendarElement = document.querySelector('[data-controller="booking-calendar"]');
     const monthsElement = document.querySelector('[data-controller="booking-months"]');
     const timeElement = document.querySelector('[data-controller="booking-time"]');
@@ -67,7 +68,7 @@ export default class extends Controller {
         this.stateValue.spaceProduct = spaceProduct
         this.stateValue.cleaningProduct = cleaningProduct
 
-        const event = new CustomEvent("stripe--products--fetched", { detail: { spaceProduct, cleaningProduct }})
+        const event = new CustomEvent("stripe.products.fetched", { detail: { spaceProduct, cleaningProduct }})
         window.dispatchEvent(event)
 
       })
@@ -78,11 +79,12 @@ export default class extends Controller {
   }
 
   fetchAvailability() {
-    // timekit.fetchAvailability(timekit.getConfig().availability)
-    Promise.resolve(MockData)
+    // Promise.resolve(MockData)
+    fetch('/.netlify/functions/timekit-availability', { headers: { accept: "application/json" } })
+      .then(response => response.json())
       .then(response => {
-        this.stateValue.monthsAvailableToBook = getMonths(getFutureDate(0), response.data[response.data.length - 1].end)
-        this.stateValue.availability = this.parseAvailability(response.data)
+        this.stateValue.monthsAvailableToBook = getMonths(getFutureDate(0), response[response.length - 1].end)
+        this.stateValue.availability = this.parseAvailability(response)
         this.updateChildren()
       })
       .catch(error => {

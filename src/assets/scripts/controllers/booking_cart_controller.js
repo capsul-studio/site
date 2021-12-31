@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
-import { toCurrency, toReadableDate, toReadableHour } from '../helpers/shared'
+import { toCurrency, toggleBookingStep, toReadableDate, toReadableHour } from '../helpers/shared'
 
 export default class extends Controller {
   static targets = [
@@ -14,6 +14,17 @@ export default class extends Controller {
     "estimatedTotal",
   ]
 
+  static values = {
+    cleaningProduct: Object,
+    spaceProduct: Object,
+    spaceProductQuantity: {
+      type: Number,
+      default: 2,
+    },
+    bookingStartTime: String,
+    bookingEndTime: String
+  }
+
   connect() {
     this.spaceProduct = null
     this.spaceProductQuantity = 2
@@ -25,20 +36,26 @@ export default class extends Controller {
 
     if (!event.detail) return
 
-    if (data.cleaningProduct) this.cleaningProduct = data.cleaningProduct
-    if (data.spaceProduct) this.spaceProduct = data.spaceProduct
-    if (data.quantity) this.spaceProductQuantity = data.quantity
-    if (data.startTime) this.bookingStartTime = data.startTime
-    if (data.endTime) this.bookingEndTime = data.endTime
+    if (data.cleaningProduct) this.cleaningProductValue = data.cleaningProduct
+    if (data.spaceProduct) this.spaceProductValue = data.spaceProduct
+    if (data.quantity) this.spaceProductQuantityValue = data.quantity
+    if (data.startTime) this.bookingStartTimeValue = data.startTime
+    if (data.endTime) this.bookingEndTimeValue = data.endTime
 
-    if (!this.spaceProduct || !this.cleaningProduct) return;
+    if (!this.spaceProductValue || !this.cleaningProductValue) return;
 
-    this.renderCleaningProduct(this.cleaningProduct)
-    this.renderSpaceProduct(this.spaceProduct, this.spaceProductQuantity)
-    if (this.bookingStartTime && this.bookingEndTime) this.renderBookingTime(this.bookingStartTime, this.bookingEndTime)
+    this.renderCleaningProduct(this.cleaningProductValue)
+    this.renderSpaceProduct(this.spaceProductValue, this.spaceProductQuantityValue)
+    if (this.bookingStartTimeValue && this.bookingEndTimeValue) this.renderBookingTime(this.bookingStartTimeValue, this.bookingEndTimeValue)
 
-    const estimatedTotal = this.calculateEstimatedTotal(this.cleaningProduct, this.spaceProduct, this.spaceProductQuantity)
+    const estimatedTotal = this.calculateEstimatedTotal(this.cleaningProductValue, this.spaceProductValue, this.spaceProductQuantityValue)
     this.renderEstimatedTotal(estimatedTotal)
+  }
+
+  clearTime() {
+    this.bookingStartTimeValue = null
+    this.bookingEndTimeValue = null
+    toggleBookingStep(this.element, false)
   }
 
   calculateEstimatedTotal(cleaningProduct, spaceProduct, spaceProductQuantity = 2) {

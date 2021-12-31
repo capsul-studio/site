@@ -33,7 +33,7 @@ export default class extends Controller {
   }
 
   broadcastSelection() {
-    const broadcast = new CustomEvent("booking--time--changed", {
+    const broadcast = new CustomEvent("booking.time.changed", {
       detail: {
         startTime: this.timeslotLabelTargets.find(label => label.dataset.timeId === this.startTimeslotValue).dataset.timeStart,
         endTime: this.timeslotLabelTargets.find(label => label.dataset.timeId === this.endTimeslotValue).dataset.timeEnd,
@@ -62,6 +62,8 @@ export default class extends Controller {
     this.startTimeslotValue = ''
     this.endTimeslotValue = ''
     if (rerender) this.render()
+
+    window.dispatchEvent(new CustomEvent('booking.time.deleted'))
   }
 
   toggleFirstStepTip(visible) {
@@ -223,7 +225,7 @@ htmlTimeslotsComponent = (siblingTimeslotsArray, minimumTimeslotToBook) => `
       Select your start time
     </div>
     <div class="w-full h-12 flex items-center justify-center border-b-2 border-black shrink-0 hidden" data-booking-time-target="secondStepTip">
-      Select your end time or <button class="underline ml-2" data-action="booking-time#clearTimeSelection">clear your selection</button>
+      Select your end time or <button class="bg-true-gray-200 ml-2 rounded-full text-gray-800 px-2" data-action="booking-time#clearTimeSelection">clear your selection</button>
     </div>
     <div class="w-full p-4 h-full overflow-y-scroll">
       <div class="grid grid-cols-1 gap-2">

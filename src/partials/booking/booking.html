@@ -4,12 +4,17 @@
     If the error persists, please <a href="#">reach out</a>
   </div>
 
-  <section class="w-full py-10">
-    <div class="flex items-center">
-      <span class="inline-block py-1 px-5 border-2 rounded-full text-2xl mr-2 border-black">1</span>
-      <h2>When are you looking to book?</h2>
+  <section class="booking-step booking-step--active">
+    capsul logo
+  </section>
+
+  <section class="booking-step booking-step--active">
+    <div class="booking-step__header">
+      <span class="booking-step__number">1</span>
+      <h2 class="text-lg">When are you looking to book?</h2>
     </div>
-    <div class="mt-5">
+
+    <div class="booking-step__content">
       <div class="w-full">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" data-controller="booking-months">
           <!-- populated with js -->
@@ -20,83 +25,88 @@
     </div>
   </section>
 
-  <section class="flex flex-wrap w-full py-10">
-    <div class="w-full flex items-center mb-5">
-      <span class="inline-block py-1 px-5 border-2 rounded-full text-2xl mr-2 border-black">2</span>
-      <h2>Select a date and time</h2>
+  <section class="booking-step">
+    <div class="booking-step__header">
+      <span class="booking-step__number">2</span>
+      <h2 class="text-lg">Select a date and time</h2>
     </div>
 
-    <div class="w-full flex flex-wrap lg:flex-nowrap items-stretch">
-      <section class="w-full lg:w-1/2 lg:pr-2" data-controller="booking-calendar">
-        <!-- populated with js -->
-      </section>
+    <div class="booking-step__content">
+      <div class="w-full flex flex-wrap lg:flex-nowrap items-stretch">
+        <section class="w-full lg:w-1/2 lg:pr-2 mb-4 lg:mb-0" data-controller="booking-calendar">
+          <!-- populated with js -->
+        </section>
 
-      <section class="w-full lg:w-1/2 lg:pl-2" data-controller="booking-time">
-        <!-- populated with js -->
-      </section>
+        <section class="w-full lg:w-1/2 lg:pl-2 mb-4 lg:mb-0" data-controller="booking-time">
+          <!-- populated with js -->
+        </section>
+      </div>
+
+      <p class="w-full mt-5 text-right text-gray-800">Can't find a time that suits you? <a href="#">Reach out</a></p>
     </div>
-
-    <p class="w-full mt-5 text-right text-gray-800">Can't find a time that suits you? <a href="#">Reach out</a></p>
 
   </section>
 
-  <section class="flex flex-wrap w-full py-10">
-    <div class="w-full flex items-center mb-5">
-      <span class="inline-block py-1 px-5 border-2 rounded-full text-2xl mr-2 border-black">3</span>
-      <h2>Review and Checkout</h2>
+  <section class="booking-step">
+    <div class="booking-step__header">
+      <span class="booking-step__number">3</span>
+      <h2 class="text-lg">Review and Checkout</h2>
     </div>
 
     <div
-      class="w-full flex flex-wrap lg:flex-nowrap items-stretch"
+      class="booking-step__content"
       data-controller="booking-cart"
       data-action="
-        stripe--products--fetched@window->booking-cart#update
-        booking--time--changed@window->booking-cart#update
+        stripe.products.fetched@window->booking-cart#update
+        booking.time.changed@window->booking-cart#update
+        booking.time.deleted@window->booking-cart#clearTime
       "
-      >
-      <section class="w-full lg:w-1/2 lg:pr-2">
-        <div class="border-2 border-black rounded px-4 h-full flex flex-col">
-          <article class="flex w-full py-4 border-b border-dotted border-true-gray-300">
-            <span>
-              <span class="block font-semibold" data-booking-cart-target="spaceProductTitle"></span>
-              <span class="block empty:hidden text-sm" data-booking-cart-target="bookingTime"></span>
-              <span class="block text-true-gray-500 text-sm" data-booking-cart-target="spaceProductDescription"></span>
-            </span>
-            <span class="ml-auto text-right">
-              <span class="block" data-booking-cart-target="spaceProductPrice"></span>
-              <span class="block text-sm" data-booking-cart-target="spaceProductQuantity"></span>
-            </span>
-          </article>
+    >
+      <div class="w-full flex flex-wrap lg:flex-nowrap items-stretch">
+        <section class="w-full lg:w-1/2 lg:pr-2 mb-4 lg:mb-0">
+          <div class="border-2 border-black rounded px-4 h-full flex flex-col">
+            <article class="flex w-full py-4 border-b border-dotted border-true-gray-300">
+              <span>
+                <span class="block font-semibold" data-booking-cart-target="spaceProductTitle"></span>
+                <span class="block empty:hidden text-sm" data-booking-cart-target="bookingTime"></span>
+                <span class="block text-true-gray-500 text-sm" data-booking-cart-target="spaceProductDescription"></span>
+              </span>
+              <span class="ml-auto text-right">
+                <span class="block" data-booking-cart-target="spaceProductPrice"></span>
+                <span class="block text-sm" data-booking-cart-target="spaceProductQuantity"></span>
+              </span>
+            </article>
 
-          <article class="flex w-full py-4">
-            <span>
-              <span class="font-semibold" data-booking-cart-target="cleaningProductTitle"></span><br>
-              <span class="text-true-gray-500 text-sm"  data-booking-cart-target="cleaningProductDescription"></span>
-            </span>
-            <span class="ml-auto font-normal" data-booking-cart-target="cleaningProductPrice"></span>
-          </article>
+            <article class="flex w-full py-4">
+              <span>
+                <span class="font-semibold" data-booking-cart-target="cleaningProductTitle"></span><br>
+                <span class="text-true-gray-500 text-sm"  data-booking-cart-target="cleaningProductDescription"></span>
+              </span>
+              <span class="ml-auto font-normal" data-booking-cart-target="cleaningProductPrice"></span>
+            </article>
 
-          <p class="flex font-semibold py-4 mt-auto border-t border-dotted border-true-gray-300">Estimated Total <span class="ml-auto font-normal" data-booking-cart-target="estimatedTotal"></span></p>
-        </div>
-      </section>
+            <p class="flex font-semibold py-4 mt-auto border-t border-dotted border-true-gray-300">Estimated Total <span class="ml-auto font-normal" data-booking-cart-target="estimatedTotal"></span></p>
+          </div>
+        </section>
 
-      <section class="w-full lg:w-1/2 lg:pl-2">
-        <form class="border-2 border-black rounded p-4 h-full" data-controller="booking-form" data-action="booking--time--changed@window->booking-form#update">
-          <div class="mb-5">
-            <label for="booking-name-input" class="w-full block">Full name *</label>
-            <input data-booking-form-target="name" id="booking-name-input" class="input" type="text" placeholder="John Joe" required minlength="3">
-          </div>
-          <div class="mb-5">
-            <label for="booking-email-input" class="w-full block">Email *</label>
-            <input data-booking-form-target="email" id="booking-email-input" class="input" type="email" placeholder="you@email.com" required>
-          </div>
-          <div>
-            <button data-booking-form-target="submitButton" data-action="booking-form#submit" type="submit" class="btn btn--black w-full" disabled>Pay with Stripe</button>
-            <small class="text-true-gray-700 leading-tight block text-center mt-3 bg-gray-100 roudned p-3">
-              We hold the booking for one hour while we wait for your payment.
-            </small>
-          </div>
-        </form>
+        <section class="w-full lg:w-1/2 lg:pl-2 mb-4 lg:mb-0">
+          <form class="border-2 border-black rounded p-4 h-full" data-controller="booking-form" data-action="booking.time.changed@window->booking-form#update">
+            <div class="mb-5">
+              <label for="booking-name-input" class="w-full block">Full name *</label>
+              <input data-booking-form-target="name" id="booking-name-input" class="input" type="text" placeholder="John Joe" required minlength="3">
+            </div>
+            <div class="mb-5">
+              <label for="booking-email-input" class="w-full block">Email *</label>
+              <input data-booking-form-target="email" id="booking-email-input" class="input" type="email" placeholder="you@email.com" required>
+            </div>
+            <div>
+              <button data-booking-form-target="submitButton" data-action="booking-form#submit" type="submit" class="btn btn--blue cursor-alias w-full" disabled>Pay with <span class="inline-block h-4"><include src="partials/svg/stripe.svg"></include></span></button>
+              <small class="text-true-gray-700 leading-tight block text-center mt-3 bg-gray-100 roudned p-3">
+                We hold your booking for one hour while waiting for your payment.
+              </small>
+            </div>
+          </form>
+        </section>
       </div>
   </section>
 </div>

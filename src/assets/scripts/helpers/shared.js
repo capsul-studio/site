@@ -39,10 +39,16 @@ const toReadableDate = (dateString) => {
   return new Intl.DateTimeFormat('en-CA', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(dateString))
 }
 
+const toggleBookingStep = (element, newStatus) => {
+  const step = element.closest('.booking-step')
+  if (step) step.classList.toggle('booking-step--active', !!newStatus)
+}
+
 export {
   getFutureDate,
   getMonths,
   toCurrency,
   toReadableHour,
   toReadableDate,
+  toggleBookingStep,
 }

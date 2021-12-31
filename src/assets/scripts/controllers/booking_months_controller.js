@@ -20,7 +20,7 @@ export default class extends Controller {
           data-action="booking#selectMonth"
           data-year="${year}"
           data-month="${month}"
-          class="p-2 border-2 border-black rounded hover:bg-true-gray-300"
+          class="p-2 border-2 border-black rounded"
         >
           ${monthNames[month - 1]} ${year}
         </button>
@@ -41,6 +41,7 @@ export default class extends Controller {
         const buttonMonth = Number(button.dataset.month)
         button.classList.toggle('bg-black', (buttonYear == newState.year && buttonMonth == newState.month))
         button.classList.toggle('hover:bg-black', (buttonYear == newState.year && buttonMonth == newState.month))
+        button.classList.toggle('hover:bg-true-gray-300', !(buttonYear == newState.year && buttonMonth == newState.month))
         button.classList.toggle('text-white', (buttonYear == newState.year && buttonMonth == newState.month))
       })
 

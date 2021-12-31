@@ -1,10 +1,14 @@
 import { Controller } from '@hotwired/stimulus'
 import Calendar from 'calendar-js'
+import { toggleBookingStep } from '../helpers/shared'
 
 export default class extends Controller {
   update (newState) {
     try {
-      if (!newState.year || !newState.month) return
+      if (!newState.year || !newState.month) {
+        this.clear()
+        return
+      }
 
       let calendarHTML = ''
       const calendar = Calendar().of(newState.year, newState.month - 1)
@@ -14,9 +18,15 @@ export default class extends Controller {
       calendarHTML += this.generateCalendarDaysHTML(calendar, newState)
 
       this.element.innerHTML = calendarHTML
+      toggleBookingStep(this.element, true)
     } catch (error) {
       console.error('Could not render booking calendar component.', error)
     }
+  }
+
+  clear () {
+    this.element.innerHTML = ''
+    toggleBookingStep(this.element, false)
   }
 
   generateCalendarHeaderHTML (calendar) {
