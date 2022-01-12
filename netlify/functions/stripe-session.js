@@ -1,6 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const products = require('./data/stripe-products-ids.json')
-const { responseHeaders, isProduction } = require('./helpers/shared.js')
+const { responseHeaders, isProduction, toReadableDate, toReadableHour } = require('./helpers/shared.js')
 
 const spaceProduct = isProduction ? products.live.space : products.test.space
 const cleaningProduct = isProduction ? products.live.cleaning : products.test.cleaning
@@ -41,6 +41,9 @@ exports.handler = async (event) => {
         start_time: start,
         end_time: end,
         booking_id: bookingId,
+        what: process.env.TIMEKIT_BOOKING_WHAT,
+        where: process.env.TIMEKIT_BOOKING_WHERE,
+        description: `${toReadableDate(start)} from  ${toReadableHour(start)} to ${toReadableHour(end)}`,
       },
       line_items: [
         {
@@ -54,9 +57,9 @@ exports.handler = async (event) => {
       ],
       phone_number_collection: { enabled: true },
       mode: 'payment',
-      success_url: `${process.env.URL}/booking-success.html`,
-      cancel_url: `${process.env.URL}/booking-cancel.html`,
-      expires_at: Math.floor(Date.now() / 1000) + 3650, // 1 hour(ish) from event
+      success_url: `${process.env.URL}/booking-success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.URL}/booking-cancel.html?session_id={CHECKOUT_SESSION_ID}`,
+      expires_at: Math.floor(Date.now() / 1000) + 3601, // 1 hour(ish) from event
     }
 
     const session = await stripe.checkout.sessions.create(data)

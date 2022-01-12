@@ -32,11 +32,11 @@ const toCurrency = (amount, currency) => {
 }
 
 const toReadableHour = (dateString) => {
-  return new Intl.DateTimeFormat('en-CA', { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateString))
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateString))
 }
 
 const toReadableDate = (dateString) => {
-  return new Intl.DateTimeFormat('en-CA', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(dateString))
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(dateString))
 }
 
 const toggleBookingStep = (element, newStatus) => {

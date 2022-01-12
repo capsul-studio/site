@@ -100,7 +100,7 @@ export default class extends Controller {
     event.preventDefault()
     const targetTimeslotId = event.currentTarget.dataset.timeId
 
-    const {startTime, endTime} = this.calculateStartAndEndTimeslots(targetTimeslotId)
+    const {startTime, endTime} = this.calculateStartAndEndTimeslots(targetTimeslotId, this.startTimeslotValue, this.endTimeslotValue)
     this.startTimeslotValue = startTime
     this.endTimeslotValue = endTime
 
@@ -112,7 +112,7 @@ export default class extends Controller {
   hoverTimeslot(event) {
     const targetTimeslotId = event.currentTarget.dataset.timeId
 
-    const {startTime, endTime} = this.calculateStartAndEndTimeslots(targetTimeslotId)
+    const {startTime, endTime} = this.calculateStartAndEndTimeslots(targetTimeslotId, (this.startTimeslotValue || this.hoverStartTimeslotValue), (this.endTimeslotValue || this.hoverEndTimeslotValue))
     this.hoverStartTimeslotValue = startTime
     this.hoverEndTimeslotValue = endTime
 
@@ -125,13 +125,10 @@ export default class extends Controller {
     this.highlightPotentialBookingTimeslots()
   }
 
-  calculateStartAndEndTimeslots(targetTimeslotId) {
+  calculateStartAndEndTimeslots(targetTimeslotId, startTime = '', endTime = '') {
     const groupIndex = Number(targetTimeslotId.split('-')[0])
     const timeslotIndex = Number(targetTimeslotId.split('-')[1])
     const siblings = this.siblingTimeslotsValue[groupIndex]
-
-    let startTime = this.startTimeslotValue
-    let endTime = this.endTimeslotValue
 
     // If start time is empty and clicked timeslot is not last on its group
     if (!startTime && (timeslotIndex+ this.minimumTimeslotToBookValue) <= siblings.length) {
@@ -147,9 +144,8 @@ export default class extends Controller {
       return { startTime, endTime }
     }
 
-    // If start and end already exist and new time belongs to other group reset and rerun function
+    // If start and end already exist and new time belongs to other group rerun function with empty start and end time
     if (startTime.split('-')[0] != groupIndex) {
-      this.clearTimeSelection(true)
       return this.calculateStartAndEndTimeslots(targetTimeslotId)
     }
 
@@ -274,7 +270,7 @@ htmlTimeslotButton = (start, end, groupIndex, index) => `
       duration-75
       hover:bg-true-gray-300
       peer-disabled:opacity-30
-      peer-disabled:hover:bg-white
+      peer-disabled:hover:bg-true-gray-300
       peer-disabled:hover:text-black
       peer-checked:bg-black
       peer-checked:border-black

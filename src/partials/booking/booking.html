@@ -1,11 +1,25 @@
 <div class="booking p-4 w-full" data-controller="booking">
   <div class="fetch-error text-center hidden">
     Error while fetching booking information. Please, reload the page. <br>
-    If the error persists, please <a href="#">reach out</a>
+    If the error persists, please <a href="mailto:info+site@capsul.studio?subject=Capsul%20Studio%20Special%20Request">reach out</a>
   </div>
 
   <section class="booking-step booking-step--active">
-    capsul logo
+    <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <div class="w-full h-full flex items-center">
+        <div class="w-60 h-auto mx-auto lg:mx-0">
+          <include src="partials/svg/capsul.svg"></include>
+        </div>
+      </div>
+
+      <div class="w-full h-full flex items-center justify-center lg:justify-end text-center lg:text-right">
+        Monday to Sunday 8AM to 10PM<br>
+        25 Liberty Street<br>
+        Unit 200 - Second floor<br>
+        M6K 1A6, Toronto, ON
+      </div>
+    </div>
   </section>
 
   <section class="booking-step booking-step--active">
@@ -21,7 +35,7 @@
         </div>
       </div>
 
-      <p class="w-full mt-5 text-right text-gray-800">Looking to book more than 3 months out? <a href="#">Reach out</a></p>
+      <p class="w-full mt-5 text-right text-gray-800">Looking to book more than 3 months out? <a href="mailto:info+site@capsul.studio?subject=Capsul%20Studio%20Special%20Request">Reach out</a></p>
     </div>
   </section>
 
@@ -42,7 +56,7 @@
         </section>
       </div>
 
-      <p class="w-full mt-5 text-right text-gray-800">Can't find a time that suits you? <a href="#">Reach out</a></p>
+      <p class="w-full mt-5 text-right text-gray-800">Can't find a time that suits you? <a href="mailto:info+site@capsul.studio?subject=Capsul%20Studio%20Special%20Request">Reach out</a></p>
     </div>
 
   </section>
@@ -100,7 +114,7 @@
               <input data-booking-form-target="email" id="booking-email-input" class="input" type="email" placeholder="you@email.com" required>
             </div>
             <div>
-              <button data-booking-form-target="submitButton" data-action="booking-form#submit" type="submit" class="btn btn--blue cursor-alias w-full" disabled>Pay with <span class="inline-block h-4"><include src="partials/svg/stripe.svg"></include></span></button>
+              <button data-booking-form-target="submitButton" data-action="booking-form#submit" type="submit" class="btn btn--blue cursor-alias font-semibold w-full flex items-center" disabled>Pay with <span class="inline-block w-14"><include src="partials/svg/stripe.svg"></include></span></button>
               <small class="text-true-gray-700 leading-tight block text-center mt-3 bg-gray-100 roudned p-3">
                 We hold your booking for one hour while waiting for your payment.
               </small>

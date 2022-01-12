@@ -289,10 +289,10 @@
   font-size: 10px;
   line-height: 1.2rem;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 25% 25% 25%;
   z-index: 999;
-  width: 50vh;
-  top: 60vh;
+  width: 70vh;
+  top: 62vh;
   transform-origin: 0 100%;
   transform: rotate(-90deg);
   text-align: center;
@@ -416,4 +416,8 @@
 
 .faq-section {
   padding-bottom: 5vh;
+}
+
+svg {
+  width: 100%;
 }

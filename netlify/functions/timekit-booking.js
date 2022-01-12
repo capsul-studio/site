@@ -2,7 +2,7 @@ const timekit = require('./lib/timekit')
 const { responseHeaders, toReadableHour, toReadableDate } = require('./helpers/shared')
 
 exports.handler = async (event) => {
-  if (!['POST', 'GET', 'PUT', 'OPTIONS'].includes(event.httpMethod)) {
+  if (!['POST', 'GET', 'OPTIONS'].includes(event.httpMethod)) {
     return { statusCode: 405, body: 'Method Not Allowed' }
   }
 
@@ -57,7 +57,7 @@ exports.handler = async (event) => {
       description: `${toReadableDate(start)} from  ${toReadableHour(start)} to ${toReadableHour(end)}`,
       participants: [customer.email],
       timeout: {
-        time: 25,
+        time: 60,
         unit: 'min',
       },
       customer: {
@@ -72,39 +72,6 @@ exports.handler = async (event) => {
       statusCode: 200,
       headers: responseHeaders,
       body: JSON.stringify(booking.data),
-    }
-  }
-
-  // Update booking
-  if (event.httpMethod === 'PUT') {
-    const { action, bookingId, customer, meta } = JSON.parse(event.body)
-
-    if (!action || !bookingId) {
-      return {
-        statuscode: 400,
-        headers: responseHeaders,
-        body: JSON.stringify({ message: 'Body is missing [action] or [bookingId] attributes.' }),
-      }
-    }
-
-    if (!['confirm', 'cancel'].includes(action)) {
-      return {
-        statuscode: 400,
-        headers: responseHeaders,
-        body: JSON.stringify({ message: `Action should be "confirm" or "cancel", received "${action}" instead.` }),
-      }
-    }
-
-    const bookingData = { id: bookingId, action }
-    if (customer && customer.phone) bookingData.customer = { phone: customer.phone }
-    if (meta) bookingData.meta = meta
-
-    const booking = await timekit.updateBooking(bookingData)
-
-    return {
-      statusCode: 200,
-      headers: responseHeaders,
-      body: JSON.stringify(booking),
     }
   }
 }

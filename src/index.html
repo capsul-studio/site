@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="assets/styles/index.css">
 </head>
 
-<body data-controller="app">
-  <div class="overlay" data-controller="overlay">
+<body data-controller="app overlay">
+  <div class="overlay">
     <div class="overlay-bar">
       <button class="overlay-bar__button" data-action="overlay#open">Book Now</button>
     </div>
@@ -35,6 +35,7 @@
       <div class="buttons-left">
         <a href="#location" class="button">Location</p>
         <a href="#amenities" class="button">Amenities</p>
+        <a href="#book" class="button" data-action="overlay#open">Book</p>
       </div>
 
       <div id="container" class="js-loop">
