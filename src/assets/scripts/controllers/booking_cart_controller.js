@@ -44,8 +44,8 @@ export default class extends Controller {
 
     if (!this.spaceProductValue || !this.cleaningProductValue) return;
 
-    this.renderCleaningProduct(this.cleaningProductValue)
-    this.renderSpaceProduct(this.spaceProductValue, this.spaceProductQuantityValue)
+    if(this.cleaningProductValue) this.renderCleaningProduct(this.cleaningProductValue)
+    if(this.spaceProductValue) this.renderSpaceProduct(this.spaceProductValue, this.spaceProductQuantityValue)
     if (this.bookingStartTimeValue && this.bookingEndTimeValue) this.renderBookingTime(this.bookingStartTimeValue, this.bookingEndTimeValue)
 
     const estimatedTotal = this.calculateEstimatedTotal(this.cleaningProductValue, this.spaceProductValue, this.spaceProductQuantityValue)
