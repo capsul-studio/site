@@ -1,12 +1,12 @@
 {
   "live": {
     "space": {
-      "id": "prod_Kqi5aEopP7KiaC",
-      "price": "price_1KB0fiIL2iHdJbfr1rZvhEWM"
+      "id": "prod_KyDaSRUDyVgl9b",
+      "price": "price_1KIH9aIL2iHdJbfrfOqJEBJX"
     },
     "cleaning": {
-      "id": "prod_Kqi6fjN2bM83Mm",
-      "price": "price_1KB0gLIL2iHdJbfrbODiRQ3G"
+      "id": "prod_KyDaVwvLVQTcXX",
+      "price": "price_1KIH9mIL2iHdJbfr6TrUJoj7"
     }
   },
   "test": {
