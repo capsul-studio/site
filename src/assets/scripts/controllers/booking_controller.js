@@ -23,7 +23,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log(timekit);
     const calendarElement = document.querySelector('[data-controller="booking-calendar"]');
     const monthsElement = document.querySelector('[data-controller="booking-months"]');
     const timeElement = document.querySelector('[data-controller="booking-time"]');

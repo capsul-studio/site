@@ -215,7 +215,7 @@ export default class extends Controller {
 }
 
 // Private templates
-htmlTimeslotsComponent = (siblingTimeslotsArray, minimumTimeslotToBook) => `
+const htmlTimeslotsComponent = (siblingTimeslotsArray, minimumTimeslotToBook) => `
   <div class="border-2 border-black rounded-lg w-full h-full flex flex-col">
     <div class="w-full h-12 flex items-center justify-center border-b-2 border-black shrink-0" data-booking-time-target="firstStepTip">
       Select your start time
@@ -235,7 +235,7 @@ htmlTimeslotsComponent = (siblingTimeslotsArray, minimumTimeslotToBook) => `
   </div>
 `
 
-htmlTimeslots = (timeslots, groupIndex, minimumTimeslotToBook) => {
+const htmlTimeslots = (timeslots, groupIndex, minimumTimeslotToBook) => {
   if (timeslots.length < minimumTimeslotToBook) { return '' }
 
   return timeslots.reduce((html, timeslot, index) => {
@@ -243,9 +243,9 @@ htmlTimeslots = (timeslots, groupIndex, minimumTimeslotToBook) => {
   }, '')
 }
 
-htmlSeparator = () => '<div class="w-full h-px my-2 border-b-4 border-dotted border-black"></div>'
+const htmlSeparator = () => '<div class="w-full h-px my-2 border-b-4 border-dotted border-black"></div>'
 
-htmlTimeslotButton = (start, end, groupIndex, index) => `
+const htmlTimeslotButton = (start, end, groupIndex, index) => `
   <label
     for="timeslot-${groupIndex}-${index}"
     data-action="click->booking-time#selectTimeslot mouseover->booking-time#hoverTimeslot mouseout->booking-time#clearHoverTimeslot"

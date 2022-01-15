@@ -6,14 +6,12 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "source": "src/index.html",
   "scripts": {
-    "postcss:watch": "postcss src/assets/css/index.pcss -o src/assets/css/index.css --env development -w",
-    "postcss:build": "postcss src/assets/css/index.pcss -o src/assets/css/index.css --env production",
     "parcel:serve": "parcel serve ./src/*.html",
     "parcel:watch": "parcel watch ./src/*.html",
     "parcel:build": "parcel build ./src/*.html",
     "clean": "rm -rf dist .parcel-cache",
-    "build": "npm-run-all -s clean postcss:build parcel:build",
-    "start": "npm-run-all -s clean -p postcss:watch parcel:serve"
+    "build": "yarn clean && yarn parcel:build",
+    "start": "npm-run-all -s clean -p parcel:serve"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
