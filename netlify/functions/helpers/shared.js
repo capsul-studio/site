@@ -1,7 +1,7 @@
 const isProduction = process.env.CONTEXT === 'production'
 
 const responseHeaders = {
-  'Access-Control-Allow-Origin': isProduction ? 'https://capsul.studio' : '*',
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Content-Type': 'application/json',
 }

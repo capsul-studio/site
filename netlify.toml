@@ -5,3 +5,7 @@
   command = "yarn start"
   port = 3000
   publish = "dist/"
+
+
+[[plugins]]
+package = "netlify-plugin-inline-functions-env-typescript"
