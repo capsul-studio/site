@@ -28,7 +28,7 @@ export default class extends Controller {
   async submit(event) {
     event.preventDefault()
 
-    this.disableForm('loading...')
+    this.disableForm('Loading...')
     const customer = await this.createStripeCustomer(this.emailTarget.value, this.nameTarget.value)
     const booking = await this.createTimekitBooking(this.bookingStartTime, this.bookingEndTime, {name: customer.name, email: customer.email, phone: customer.phone})
     const sessionResponse = await this.createStripeSession(booking.id, customer.id, this.bookingQuantity, this.bookingStartTime, this.bookingEndTime)
