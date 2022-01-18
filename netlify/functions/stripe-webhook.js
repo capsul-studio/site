@@ -3,7 +3,7 @@ const { responseHeaders } = require('./helpers/shared.js')
 const { handleCheckoutSessionCompleted, handleCheckoutSessionCancelled } = require('./lib/stripe.js')
 
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
-const endpointSecret = 'whsec_Er4c1i64GAvdhHOc2d6kn16kwZQiRqOB'
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
 
 exports.handler = async (event) => {
   const sig = event.headers['stripe-signature']
