@@ -42,8 +42,32 @@ async function handleCheckoutSessionCompleted (stripeEvent) {
   }
 }
 
+async function handleCheckoutSessionCancelled (stripeEvent) {
+  const id = stripeEvent.data.object.metadata.booking_id
+
+  try {
+    const response = await timekit.updateBooking({
+      id,
+      action: 'cancel',
+    })
+
+    return {
+      statusCode: 200,
+      headers: responseHeaders,
+      body: JSON.stringify(response.data),
+    }
+  } catch (error) {
+    return {
+      statusCode: 500,
+      headers: responseHeaders,
+      body: JSON.stringify(error.data),
+    }
+  }
+}
+
 module.exports = {
   isValidPayment,
   getStripePaymentUrl,
   handleCheckoutSessionCompleted,
+  handleCheckoutSessionCancelled,
 }

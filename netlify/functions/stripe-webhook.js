@@ -1,6 +1,6 @@
 const stripe = require('stripe')
 const { responseHeaders } = require('./helpers/shared.js')
-const { handleCheckoutSessionCompleted } = require('./lib/stripe.js')
+const { handleCheckoutSessionCompleted, handleCheckoutSessionCancelled } = require('./lib/stripe.js')
 
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
 const endpointSecret = 'whsec_Er4c1i64GAvdhHOc2d6kn16kwZQiRqOB'
@@ -24,8 +24,7 @@ exports.handler = async (event) => {
     case 'checkout.session.completed':
       return handleCheckoutSessionCompleted(stripeEvent)
     case 'checkout.session.expired':
-      console.log('Cancel booking', stripeEvent.metadata)
-      break
+      return handleCheckoutSessionCancelled(stripeEvent)
     default:
       statusCode = 422
       body = `Unhandled event type ${stripeEvent.type}`
