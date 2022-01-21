@@ -27,6 +27,7 @@ export default class extends Controller {
 
   async submit(event) {
     event.preventDefault()
+    if (!this.element.checkValidity()) return;
 
     this.disableForm('Loading...')
     const customer = await this.createStripeCustomer(this.emailTarget.value, this.nameTarget.value)
