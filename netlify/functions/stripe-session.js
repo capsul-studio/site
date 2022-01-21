@@ -41,7 +41,7 @@ exports.handler = async (event) => {
         start_time: start,
         end_time: end,
         booking_id: bookingId,
-        what: `${customer.name} — ${customer.email}] — ${process.env.TIMEKIT_BOOKING_WHAT}`,
+        what: `${customer.name} — ${customer.email} — ${process.env.TIMEKIT_BOOKING_WHAT}`,
         where: process.env.TIMEKIT_BOOKING_WHERE,
         description: `${toReadableDate(start)} from  ${toReadableHour(start)} to ${toReadableHour(end)}`,
       },
