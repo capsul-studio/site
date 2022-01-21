@@ -52,7 +52,7 @@ exports.handler = async (event) => {
       graph: 'instant_payment',
       start,
       end,
-      what: `[${customer.name} | ${customer.email}] ${process.env.TIMEKIT_BOOKING_WHAT}`,
+      what: `${customer.name} — ${customer.email}] — ${process.env.TIMEKIT_BOOKING_WHAT}`,
       where: process.env.TIMEKIT_BOOKING_WHERE,
       description: `${toReadableDate(start)} from  ${toReadableHour(start)} to ${toReadableHour(end)}`,
       participants: [customer.email],
