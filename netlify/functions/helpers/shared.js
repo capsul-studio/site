@@ -17,11 +17,11 @@ function omit (obj, keys) {
 }
 
 const toReadableHour = (dateString) => {
-  return new Intl.DateTimeFormat('en-CA', { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateString))
+  return new Intl.DateTimeFormat('en-CA', { hour: 'numeric', minute: 'numeric', hour12: false, timezone: 'America/Toronto' }).format(new Date(dateString))
 }
 
 const toReadableDate = (dateString) => {
-  return new Intl.DateTimeFormat('en-CA', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(dateString))
+  return new Intl.DateTimeFormat('en-CA', { day: 'numeric', month: 'long', year: 'numeric', timezone: 'America/Toronto' }).format(new Date(dateString))
 }
 
 module.exports = {
