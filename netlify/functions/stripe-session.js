@@ -60,6 +60,7 @@ exports.handler = async (event) => {
       success_url: `${process.env.URL}/booking-success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.URL}/booking-cancel.html?session_id={CHECKOUT_SESSION_ID}`,
       expires_at: Math.floor(Date.now() / 1000) + 3601, // 1 hour(ish) from event
+      allow_promotion_codes: true,
     }
 
     const session = await stripe.checkout.sessions.create(data)
