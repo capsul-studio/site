@@ -4,7 +4,7 @@ import scrollWarp from './lib/scroll-warp'
 import scrollbarPadding from './lib/scrollbar-padding'
 
 // GIF 3D rotation effect
-import RubbableGif from './vendors/rubbable'
+// import RubbableGif from './vendors/rubbable'
 
 // Stimulus JS
 import { Application } from '@hotwired/stimulus'
@@ -39,11 +39,11 @@ $(function () {
   scrollWarp($content, 100, warpConfig.num, warpConfig.theta)
 
   // Init Rubabble - TODO: Move to its own controller
-  if (window.innerWidth >= 600) {
-    const sup2 = new RubbableGif({ gif: document.getElementById('studio-desktop') })
-    sup2.load()
-  } else {
-    const sup2 = new RubbableGif({ gif: document.getElementById('studio-mobile') })
-    sup2.load()
-  }
+  // if (window.innerWidth >= 600) {
+  //   const sup2 = new RubbableGif({ gif: document.getElementById('studio-desktop') })
+  //   sup2.load()
+  // } else {
+  //   const sup2 = new RubbableGif({ gif: document.getElementById('studio-mobile') })
+  //   sup2.load()
+  // }
 })
