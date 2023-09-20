@@ -21,8 +21,8 @@ exports.handler = async (event) => {
   // Returns a list of procuts with its prices
   if (event.httpMethod === 'GET') {
     const prices = await stripe.prices.list({
-      expand: ['data.product'],
-    })
+      limit: 100,
+      expand: ['data.product'] });
 
     const parsedProducts = prices.data
       .map((price) => {
