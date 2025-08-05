@@ -8,5 +8,6 @@
 # netlify.toml
 [build.environment]
   NODE_VERSION = "18"
+  PYTHON_VERSION = "3.10"
 [[plugins]]
 package = "netlify-plugin-inline-functions-env-typescript"
