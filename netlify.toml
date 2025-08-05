@@ -5,7 +5,9 @@
   command = "yarn start"
   port = 3000
   publish = "dist/"
-
+# netlify.toml
+[build.environment]
+  NODE_VERSION = "20.11.1"
 
 [[plugins]]
 package = "netlify-plugin-inline-functions-env-typescript"
