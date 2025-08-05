@@ -7,6 +7,6 @@
   publish = "dist/"
 # netlify.toml
 [build.environment]
-  NODE_VERSION = "20.11.1"
+  NODE_VERSION = "20"
 [[plugins]]
 package = "netlify-plugin-inline-functions-env-typescript"
